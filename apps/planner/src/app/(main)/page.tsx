@@ -6,7 +6,7 @@ export default function Home() {
             <div className="grow flex flex-col">
                 <Post />
             </div>
-            <aside className="sticky top-0 p-4 w-72 bg-purple-50 rounded-xl"></aside>
+            <aside className="sticky shrink-0 top-0 p-4 w-72 bg-purple-50 rounded-xl"></aside>
         </section>
     );
 }

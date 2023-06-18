@@ -7,7 +7,7 @@ const MainSidebar = () => {
             <header>Logo</header>
             <nav className="flex flex-col gap-4">
                 <Button>Publications</Button>
-                <Button active>Modèle d'invitations</Button>
+                <Button active>Modèle d invitations</Button>
                 <Button>Salle de céremonie</Button>
                 <Button>Évenemment</Button>
                 <Button>Discussion</Button>
