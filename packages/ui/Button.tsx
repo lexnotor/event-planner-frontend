@@ -15,9 +15,9 @@ export const Button = ({
         <button
             onClick={() => alert("boop")}
             style={{ textAlign: center ? "center" : "left" }}
-            className={`py-2 px-4 ${
+            className={` py-3 px-4 ${
                 active ? "bg-purple-300" : "bg-purple-200"
-            } hover:bg-purple-300 duration-500 rounded-r-full rounded-l-full`}
+            } hover:bg-purple-300 transition-colors !duration-500 rounded-r-full rounded-l-full`}
         >
             {children}
         </button>

@@ -15,7 +15,7 @@ export default function RootLayout({
         <html lang="fr">
             <body>
                 <div className="flex h-screen">
-                    <div className="w-60 overflow-y-auto">
+                    <div className="w-72 overflow-y-auto">
                         <MainSidebar />
                     </div>
                     <main className="grow">{children}</main>
