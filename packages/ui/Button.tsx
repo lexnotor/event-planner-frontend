@@ -2,6 +2,24 @@
 
 import * as React from "react";
 
-export const Button = () => {
-  return <button onClick={() => alert("boop")}>Boop</button>;
+export const Button = ({
+    children,
+    center = false,
+    active = false,
+}: {
+    children: React.ReactNode;
+    center?: boolean;
+    active?: boolean;
+}) => {
+    return (
+        <button
+            onClick={() => alert("boop")}
+            style={{ textAlign: center ? "center" : "left" }}
+            className={`py-2 px-4 ${
+                active ? "bg-purple-300" : "bg-purple-200"
+            } hover:bg-purple-300 duration-500 rounded-r-full rounded-l-full`}
+        >
+            {children}
+        </button>
+    );
 };
