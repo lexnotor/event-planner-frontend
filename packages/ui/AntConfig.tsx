@@ -7,7 +7,10 @@ const AntConfig = ({ children }: { children: React.ReactNode }) => {
     return (
         <ConfigProvider
             theme={{
-                token: { colorPrimary: "#9539f1" },
+                token: {
+                    colorPrimary: "#9539f1",
+                    colorTextBase: "#1d1c1c",
+                },
             }}
         >
             {children}

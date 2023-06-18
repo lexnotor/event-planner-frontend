@@ -12,5 +12,5 @@ body {
 }
 
 .ant-btn-primary {
-  @apply bg-purple-700
+  @apply bg-purple-600
 }
