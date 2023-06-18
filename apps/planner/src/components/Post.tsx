@@ -1,4 +1,4 @@
-import React from "react";
+import NewPost from "./modals/NewPost";
 
 const Post = () => {
     return (
@@ -30,6 +30,7 @@ const Post = () => {
                 <div></div>
                 <div></div>
             </footer>
+            <NewPost />
         </div>
     );
 };

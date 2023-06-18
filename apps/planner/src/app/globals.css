@@ -10,3 +10,7 @@ body {
   font-size: 14px;
   @apply text-neutral-700
 }
+
+.ant-btn-primary {
+  @apply bg-purple-700
+}
