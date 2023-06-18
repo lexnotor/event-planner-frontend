@@ -21,8 +21,15 @@ const Post = () => {
                     printer took a galley of type and scrambled it to make a
                     type specimen book
                 </p>
+                <div className="flex gap-4 mt-4">
+                    <span className="basis-1/2 h-44 bg-neutral-300 rounded-xl"></span>
+                    <span className="basis-1/2 h-44 bg-neutral-300 rounded-xl"></span>
+                </div>
             </main>
-            <footer></footer>
+            <footer className="border-t min-h-[2rem]">
+                <div></div>
+                <div></div>
+            </footer>
         </div>
     );
 };

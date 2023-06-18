@@ -14,7 +14,7 @@ export default function RootLayout({
     return (
         <html lang="fr">
             <body>
-                <div className="flex h-screen">
+                <div className="flex h-screen max-w-[1500px] mx-auto">
                     <div className="w-72 overflow-y-auto shrink-0">
                         <MainSidebar />
                     </div>
