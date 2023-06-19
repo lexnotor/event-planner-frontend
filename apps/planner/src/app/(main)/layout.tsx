@@ -1,4 +1,6 @@
 import MainSidebar from "@/components/MainSidebar";
+import ModalManager from "@/components/modals/ModalManager";
+import StoreProvider from "@/redux/StoreProvider";
 import "../globals.css";
 
 export const metadata = {
@@ -20,6 +22,9 @@ export default function RootLayout({
                     </div>
                     <main className="grow">{children}</main>
                 </div>
+                <StoreProvider>
+                    <ModalManager />
+                </StoreProvider>
             </body>
         </html>
     );

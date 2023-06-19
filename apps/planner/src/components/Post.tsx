@@ -30,7 +30,6 @@ const Post = () => {
                 <div></div>
                 <div></div>
             </footer>
-            <NewPost />
         </div>
     );
 };

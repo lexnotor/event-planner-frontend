@@ -8,7 +8,7 @@
 
 body {
   font-size: 14px;
-  @apply text-neutral-700
+  @apply text-neutral-700 bg-neutral-200
 }
 
 .ant-btn-primary {

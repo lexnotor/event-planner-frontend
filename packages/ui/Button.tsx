@@ -7,15 +7,16 @@ export const Button = ({
     center = false,
     active = false,
     size = "large",
+    ...rest
 }: {
     children: React.ReactNode;
     center?: boolean;
     active?: boolean;
     size?: "small" | "middle" | "large";
-}) => {
+} & React.DOMAttributes<HTMLButtonElement>) => {
     return (
         <button
-            onClick={() => alert("boop")}
+            {...rest}
             style={{ textAlign: center ? "center" : "left" }}
             className={` ${
                 size == "small" ? "py-1" : size == "large" ? "py-3" : "py-2"

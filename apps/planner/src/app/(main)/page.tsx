@@ -1,4 +1,6 @@
 import Post from "@/components/Post";
+import RightSidebar from "@/components/RightSidebar";
+import StoreProvider from "@/redux/StoreProvider";
 
 export default function Home() {
     return (
@@ -11,7 +13,12 @@ export default function Home() {
                 <Post />
                 <Post />
             </div>
-            <aside className="sticky shrink-0 top-0 p-4 w-72 bg-purple-50 rounded-xl"></aside>
+
+            <aside className="sticky shrink-0 top-0 p-4 w-72 bg-purple-50 rounded-xl">
+                <StoreProvider>
+                    <RightSidebar />
+                </StoreProvider>
+            </aside>
         </section>
     );
 }
