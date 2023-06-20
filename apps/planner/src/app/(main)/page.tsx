@@ -12,9 +12,12 @@ export default function Home() {
                 <Post />
                 <Post />
                 <Post />
+                <Post />
+                <Post />
+                <Post />
             </div>
 
-            <aside className="sticky shrink-0 top-0 p-4 w-72 bg-purple-50 rounded-xl">
+            <aside className="sticky shrink-0 top-0 w-72">
                 <StoreProvider>
                     <RightSidebar />
                 </StoreProvider>

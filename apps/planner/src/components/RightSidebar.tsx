@@ -9,13 +9,19 @@ const RightSidebar = () => {
     const dispatch = useDispatch<Dispatcher>();
 
     return (
-        <div className="flex flex-col">
-            <Button
-                center
-                onClick={() => dispatch(openModal({ modal_id: "NEW_POST" }))}
-            >
-                New Post
-            </Button>
+        <div className="flex flex-col gap-6">
+            <div className="p-4 bg-white rounded-xl"></div>
+            <div className="flex flex-col">
+                <Button
+                    size="middle"
+                    center
+                    onClick={() =>
+                        dispatch(openModal({ modal_id: "NEW_POST" }))
+                    }
+                >
+                    New Post
+                </Button>
+            </div>
         </div>
     );
 };

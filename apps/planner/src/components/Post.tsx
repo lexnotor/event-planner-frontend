@@ -1,8 +1,11 @@
-import NewPost from "./modals/NewPost";
+"use client";
+
+import { Popover } from "antd";
+import { RiMore2Fill } from "react-icons/ri";
 
 const Post = () => {
     return (
-        <div className="py-4 px-8 bg-purple-50 rounded-xl flex flex-col gap-4">
+        <div className="py-4 px-8 bg-white rounded-xl flex flex-col gap-4">
             <header className="flex gap-2 justify-between items-center">
                 <div className="w-10 h-10 rounded-full bg-purple-500" />
                 <div className="">
@@ -11,7 +14,15 @@ const Post = () => {
                         12 Avr 2023
                     </p>
                 </div>
-                <div className="ml-auto">O</div>
+                <Popover
+                    trigger={"click"}
+                    content={<div>Actions</div>}
+                    destroyTooltipOnHide
+                >
+                    <div className="ml-auto cursor-pointer text-xl hover:text-purple-400 transition-colors duration-500 rounded-full">
+                        <RiMore2Fill />
+                    </div>
+                </Popover>
             </header>
             <main>
                 <p>

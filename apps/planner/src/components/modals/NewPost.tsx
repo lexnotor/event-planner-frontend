@@ -1,15 +1,27 @@
 "use client";
+
 import { CloseModalFunction } from "@/index";
 import { Input, Modal, Select } from "antd";
 import { useEffect, useState } from "react";
 import { Button } from "ui";
 
 const NewPost = ({ close, id }: { close: CloseModalFunction; id: string }) => {
-    const [, setOpen] = useState(false);
-    useEffect(() => setOpen(true), []);
+    const [data, setDate] = useState<{ value: number; label: string }[]>([]);
+
+    useEffect(() => {
+        ((i: number) => {
+            for (let j = 0; j < i; j++)
+                setDate((old) => [...old, { value: j, label: "Option" }]);
+        })(30);
+    }, []);
+
     return (
         <Modal
             open={true}
+            mousePosition={{
+                y: window.innerHeight / 2,
+                x: window.innerWidth / 2,
+            }}
             title="Nouvelle publication"
             footer={
                 <div className="flex justify-end gap-4">
@@ -31,12 +43,7 @@ const NewPost = ({ close, id }: { close: CloseModalFunction; id: string }) => {
                 Sélectionner un prestataire
             </label>
             <Select
-                options={[
-                    ...(function* (i) {
-                        for (let j = 0; j < i; j++)
-                            yield { value: j, label: "Option" };
-                    })(30),
-                ]}
+                options={data}
                 className="w-full"
                 showSearch
                 placeholder="Prestataire"
