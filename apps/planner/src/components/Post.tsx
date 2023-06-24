@@ -1,6 +1,7 @@
 "use client";
 
 import { Popover } from "antd";
+import Link from "next/link";
 import { RiMore2Fill } from "react-icons/ri";
 
 const Post = () => {
@@ -16,8 +17,16 @@ const Post = () => {
                 </div>
                 <Popover
                     trigger={"click"}
-                    content={<div>Actions</div>}
+                    arrow={false}
+                    content={
+                        <ul className="flex flex-col w-40 [&>li:hover]:bg-slate-50 [&>li]:py-2 [&>li]:cursor-pointer">
+                            <li>Enregistrer</li>
+                            <li>Contacter</li>
+                            <li>Prestataire</li>
+                        </ul>
+                    }
                     destroyTooltipOnHide
+                    placement="bottomRight"
                 >
                     <div className="ml-auto cursor-pointer text-xl hover:text-purple-400 transition-colors duration-500 rounded-full">
                         <RiMore2Fill />
