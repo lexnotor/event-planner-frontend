@@ -10,7 +10,10 @@ import NewPost from "./NewPost";
 const ModalManager = () => {
     const modals = useSelector((state: RootState) => state.modalmanager);
     const dispatch = useDispatch<Dispatcher>();
-    const close = useCallback((id: string) => dispatch(closeModal()), []);
+    const close = useCallback(
+        (id: string) => dispatch(closeModal()),
+        [dispatch]
+    );
 
     return (
         <AntConfig>
