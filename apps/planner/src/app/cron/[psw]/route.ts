@@ -8,7 +8,7 @@ function repeatperhour() {
         .then((json) => console.log(json))
         .catch((err) => console.error(err));
 
-    num = setTimeout(repeatperhour, 600 * 1000);
+    num = setTimeout(repeatperhour, 10 * 1000);
 }
 
 export function GET(req: NextRequest, context: { params: any }) {
