@@ -3,14 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 let num: any = 0;
 
 function repeatperhour() {
-    try {
-        fetch(`${process.env.BACKEND}/api/v1/cron`, { cache: "no-cache" })
-            .then((res) => res.json())
-            .then((json) => console.log(json))
-            .catch((err) => console.error(err));
-    } catch (error) {
-        console.error("first");
-    }
+    fetch(`${process.env.BACKEND}/api/v1/cron`, { cache: "no-cache" })
+        .then((res) => res.json())
+        .then((json) => console.log(json))
+        .catch((err) => console.error(err));
 
     num = setTimeout(repeatperhour, 10 * 1000);
 }
