@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { Button } from "ui";
 
@@ -12,7 +13,10 @@ const MainSidebar = () => {
                 <Button>Évenemment</Button>
                 <Button>Discussion</Button>
             </nav>
-            <footer className="mt-auto">Signin/Login</footer>
+            <footer className="mt-auto">
+                <Link href={"/signup"}>Signup</Link>/
+                <Link href={"/login"}>Login</Link>
+            </footer>
         </section>
     );
 };
