@@ -16,9 +16,11 @@ export default function RootLayout({
     return (
         <html lang="fr">
             <body>
-                <div className="flex h-screen max-w-[1500px] mx-auto">
-                    <main className="grow">{children}</main>
-                </div>
+                <h1 className="mt-7 ml-[7vh]">Logo</h1>
+                <main className="flex gap-4 h-screen max-w-[1500px] mx-auto p-[7vh]">
+                    <div className="w-[25rem]">{children}</div>
+                    <div className="grow">image</div>
+                </main>
                 <StoreProvider>
                     <ModalManager />
                 </StoreProvider>
