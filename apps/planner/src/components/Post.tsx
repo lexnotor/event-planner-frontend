@@ -1,7 +1,6 @@
 "use client";
 
 import { Popover } from "antd";
-import Link from "next/link";
 import { RiMore2Fill } from "react-icons/ri";
 
 const Post = () => {

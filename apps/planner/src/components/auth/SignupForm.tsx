@@ -27,7 +27,7 @@ const SignupForm = () => {
             secret,
         };
 
-        console.log(payload);
+        return payload;
     };
 
     return (

@@ -21,8 +21,7 @@ const LoginForm = () => {
             email,
             secret,
         };
-
-        console.log(payload);
+        return payload;
     };
     return (
         <form className="flex flex-col gap-6" onSubmit={submit}>

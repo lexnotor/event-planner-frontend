@@ -8,7 +8,6 @@ const postSlice = createSlice({
     initialState,
     name: "posts",
     reducers: {},
-    extraReducers: (builder) => {},
 });
 
 export default postSlice.reducer;
