@@ -1,3 +1,4 @@
+import GoogleLogin from "@/components/auth/GoogleLogin";
 import LoginForm from "@/components/auth/LoginForm";
 import Link from "next/link";
 import React from "react";
@@ -13,9 +14,7 @@ const Page = () => {
             </section>
 
             <section>
-                <button className="block py-2 px-4 text-center rounded-lg border border-neutral-500 w-full">
-                    Continuer avec Google
-                </button>
+                <GoogleLogin />
             </section>
 
             <section className="my-8 flex items-center gap-4">
