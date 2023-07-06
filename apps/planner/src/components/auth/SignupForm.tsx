@@ -1,9 +1,11 @@
 "use client";
 import useToggle from "@/hooks/toggle";
 import Link from "next/link";
+import { AiOutlineCheck } from "react-icons/ai";
+import Checkbox from "ui/Checkbox";
 
 const SignupForm = () => {
-    const [policiesChecked, setPoliciesChecked] = useToggle(false);
+    const [policiesChecked, togglePoliciesChecked] = useToggle(false);
     return (
         <form className="flex flex-col gap-6">
             <div className="flex gap-4">
@@ -33,19 +35,18 @@ const SignupForm = () => {
                 />
             </div>
             <div className="flex gap-4">
-                <label htmlFor="policies" className="flex items-center gap-2">
-                    <span className="w-3 h-3 inline-block border-[0.5px] border-neutral-500 rounded-sm" />
+                <label
+                    htmlFor="policies"
+                    className="flex items-center gap-2 cursor-pointer"
+                >
+                    <Checkbox
+                        toggler={togglePoliciesChecked}
+                        isChecked={policiesChecked}
+                    />
                     <span>
                         J’ai lu et j’accepte les conditions d’utilisation
                     </span>
                 </label>
-                <input
-                    id="policies"
-                    type="checkbox"
-                    hidden
-                    checked
-                    className="py-2 px-4 w-full border border-neutral-400 rounded-lg focus:outline-none"
-                />
             </div>
             <div className="flex gap-4 flex-col">
                 <button className="block py-2 px-4 text-center rounded-lg border bg-neutral-700 text-white font-semibold w-full">
