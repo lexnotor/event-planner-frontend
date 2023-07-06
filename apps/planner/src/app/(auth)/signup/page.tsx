@@ -1,7 +1,5 @@
 import GoogleSignup from "@/components/auth/GoogleSignup";
 import SignupForm from "@/components/auth/SignupForm";
-import Link from "next/link";
-import React from "react";
 
 const Page = () => {
     return (
@@ -23,6 +21,7 @@ const Page = () => {
                 <span>Ou</span>
                 <hr className="border-[0.5px] border-neutral-500 grow" />
             </section>
+
             <section>
                 <SignupForm />
             </section>

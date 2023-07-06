@@ -1,7 +1,5 @@
 import GoogleLogin from "@/components/auth/GoogleLogin";
 import LoginForm from "@/components/auth/LoginForm";
-import Link from "next/link";
-import React from "react";
 
 const Page = () => {
     return (
@@ -22,6 +20,7 @@ const Page = () => {
                 <span>Ou</span>
                 <hr className="border-[0.5px] border-neutral-500 grow" />
             </section>
+
             <section>
                 <LoginForm />
             </section>
