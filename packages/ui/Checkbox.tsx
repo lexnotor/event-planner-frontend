@@ -1,14 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { ForwardedRef, forwardRef, useState } from "react";
 import { AiOutlineCheck } from "react-icons/ai";
 
-const Checkbox = ({
-    isChecked,
-    toggler,
-}: {
-    isChecked?: boolean;
-    toggler?: Function;
-}) => {
+const Checkbox = forwardRef(function Checkbox(
+    {
+        isChecked,
+        toggler,
+        id = "",
+    }: {
+        isChecked?: boolean;
+        toggler?: Function;
+        id?: string;
+    },
+    ref: ForwardedRef<HTMLInputElement>
+) {
     const [checked, setChecked] = useState(true);
 
     return (
@@ -20,7 +25,8 @@ const Checkbox = ({
                 />
             </span>
             <input
-                id="policies"
+                ref={ref}
+                id={id}
                 type="checkbox"
                 onChange={() => {
                     toggler ? toggler() : setChecked((old) => !old);
@@ -31,6 +37,6 @@ const Checkbox = ({
             />
         </>
     );
-};
+});
 
 export default Checkbox;
