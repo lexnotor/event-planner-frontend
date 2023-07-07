@@ -1,3 +1,4 @@
+"use client";
 import { AsyncThunkPayloadCreator } from "@reduxjs/toolkit";
 import axios from "axios";
 import { authUrl } from "../helper.api";
@@ -29,4 +30,24 @@ const signupUser: AsyncThunkPayloadCreator<any, any> = async (
     }
 };
 
-export const userServices = { signupUser };
+const loginUser: AsyncThunkPayloadCreator<string, any> = async (
+    payload: {
+        secret: string;
+        username: string;
+    },
+    thunkAPI
+) => {
+    const { secret, username } = payload;
+    try {
+        const res = await axios.post(
+            authUrl.login,
+            {},
+            { auth: { username, password: secret } }
+        );
+        return res.data.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.message ?? "SIGNUP_FAILED");
+    }
+};
+
+export const userServices = { signupUser, loginUser };

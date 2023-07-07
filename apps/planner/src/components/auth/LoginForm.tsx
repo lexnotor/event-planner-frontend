@@ -1,10 +1,18 @@
 "use client";
 import useToggle from "@/hooks/toggle";
+import useAuth from "@/hooks/useAuth";
+import { Dispatcher } from "@/redux/store";
+import { loginUser } from "@/redux/user/user.slice";
 import Link from "next/link";
-import { FormEventHandler, useRef } from "react";
+import { FormEventHandler, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
 import Checkbox from "ui/Checkbox";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+    const dispatch = useDispatch<Dispatcher>();
+
+    // Form data
     const [longSession, toggleLongSession] = useToggle(true);
 
     const emailRef = useRef<HTMLInputElement>(null);
@@ -18,16 +26,24 @@ const LoginForm = () => {
         ];
 
         const payload = {
-            email,
+            username: email,
             secret,
         };
-        return payload;
+
+        dispatch(loginUser(payload));
     };
+
+    // Account Verification
+    const { account } = useAuth();
+    const router = useRouter();
+    useEffect(() => {
+        if (account.token) router.push("/");
+    });
     return (
         <form className="flex flex-col gap-6" onSubmit={submit}>
             <div className="flex gap-4">
                 <input
-                    type="email"
+                    type="text"
                     placeholder="Votre email"
                     className="py-2 px-4 w-full border border-neutral-400 rounded-lg focus:outline-none"
                     ref={emailRef}

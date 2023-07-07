@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3500";
+const baseUrl = "http://localhost:3500/api/v1";
 
 const apiFetch = async (type: string, route: string) => {
     const url = `${route}`;
