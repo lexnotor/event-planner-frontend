@@ -2,6 +2,7 @@ import MainSidebar from "@/components/MainSidebar";
 import ModalManager from "@/components/modals/ModalManager";
 import StoreProvider from "@/redux/StoreProvider";
 import "../globals.css";
+import AuthManager from "@/components/auth/AuthManager";
 
 export const metadata = {
     title: "Create Next App",
@@ -24,6 +25,7 @@ export default function RootLayout({
                 </div>
                 <StoreProvider>
                     <ModalManager />
+                    <AuthManager />
                 </StoreProvider>
             </body>
         </html>

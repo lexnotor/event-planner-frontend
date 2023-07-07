@@ -55,7 +55,7 @@ const getMyInfo: AsyncThunkPayloadCreator<any, void> = async (_, thunkAPI) => {
     try {
         const { user } = thunkAPI.getState() as RootState;
         const res = await axios.get(userUrl.getMe, {
-            headers: { Authorization: user.token },
+            headers: { Authorization: `Bearer ${user.token}` },
         });
         return res.data.data;
     } catch (error) {

@@ -1,6 +1,6 @@
-import Link from "next/link";
-import React from "react";
 import { Button } from "ui";
+import UserButton from "./auth/UserButton";
+import StoreProvider from "@/redux/StoreProvider";
 
 const MainSidebar = () => {
     return (
@@ -14,8 +14,9 @@ const MainSidebar = () => {
                 <Button>Discussion</Button>
             </nav>
             <footer className="mt-auto">
-                <Link href={"/signup"}>Signup</Link>/
-                <Link href={"/login"}>Login</Link>
+                <StoreProvider>
+                    <UserButton />
+                </StoreProvider>
             </footer>
         </section>
     );

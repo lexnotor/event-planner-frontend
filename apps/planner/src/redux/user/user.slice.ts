@@ -5,7 +5,15 @@ import { userServices } from "./user.service";
 
 type Status = "LOADING" | "ERROR" | "FULLFILED";
 interface UserState {
-    data: any;
+    data: {
+        id: string;
+        firstname: string;
+        lastname: string;
+        username: string;
+        email: string;
+        description: string;
+        types: string;
+    };
     thread: {
         id: string;
         action: string;

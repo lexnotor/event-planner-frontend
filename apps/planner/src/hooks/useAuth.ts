@@ -8,8 +8,8 @@ const useAuth = () => {
     const dispatch = useDispatch<Dispatcher>();
     const account = useSelector((state: RootState) => state.user);
     useEffect(() => {
-        if (!account.data) dispatch(getMe());
-    }, [dispatch, account]);
+        if (!account.data && account.token) dispatch(getMe());
+    }, [dispatch, account.data, account.token]);
     return { account };
 };
 
