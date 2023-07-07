@@ -31,6 +31,8 @@ const initialState: UserState = {
 
 const loginUser = createAsyncThunk("user/loginUser", userServices.loginUser);
 
+const getMe = createAsyncThunk("user/getMyInfo", userServices.getMyInfo);
+
 const userSlice = createSlice({
     name: "user",
     initialState,
@@ -41,26 +43,48 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) =>
         builder
-            .addCase(loginUser.pending, (state) => {
+            .addCase(loginUser.pending, (state, { meta }) => {
                 state.thread.push({
                     action: "LOGIN",
-                    id: crypto.randomUUID(),
+                    id: meta.requestId,
                     status: "LOADING",
                 });
             })
-            .addCase(loginUser.fulfilled, (state, { payload }) => {
+            .addCase(loginUser.fulfilled, (state, { payload, meta }) => {
                 localStorage.setItem("session_token", payload);
                 state.token = payload;
                 const tasks = state.thread.find(
-                    (task) => task.action == "LOGIN" && task.status == "LOADING"
+                    (task) => task.id == meta.requestId
                 );
                 if (tasks) tasks.status == "FULLFILED";
             })
-            .addCase(loginUser.rejected, (state) => {
+            .addCase(loginUser.rejected, (state, { meta }) => {
                 localStorage.removeItem("session_token");
                 state.token = null;
                 const tasks = state.thread.find(
-                    (task) => task.action == "LOGIN" && task.status == "LOADING"
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status == "ERROR";
+            })
+
+            .addCase(getMe.pending, (state, { meta }) => {
+                state.thread.push({
+                    action: "GET_ME",
+                    id: meta.requestId,
+                    status: "LOADING",
+                });
+            })
+            .addCase(getMe.fulfilled, (state, { payload, meta }) => {
+                localStorage.setItem("session_data", JSON.stringify(payload));
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status == "FULLFILED";
+                state.data = payload;
+            })
+            .addCase(getMe.rejected, (state, { meta }) => {
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
                 );
                 if (tasks) tasks.status == "ERROR";
             }),
@@ -69,6 +93,6 @@ const userSlice = createSlice({
 // sync actions
 export const { removeUserData } = userSlice.actions;
 // async actions
-export { loginUser };
+export { loginUser, getMe };
 // reducer
 export default userSlice.reducer;

@@ -18,4 +18,9 @@ const authUrl = {
     signup: `${baseUrl}/signup`,
 };
 
-export { apiFetch, authUrl, baseUrl };
+const userUrl = {
+    getMe: `${baseUrl}/user/me`,
+    getUser: `${baseUrl}/user`,
+};
+
+export { apiFetch, authUrl, baseUrl, userUrl };
