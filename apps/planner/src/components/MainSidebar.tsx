@@ -4,7 +4,7 @@ import StoreProvider from "@/redux/StoreProvider";
 
 const MainSidebar = () => {
     return (
-        <section className="p-8 flex flex-col gap-10 h-full bg-purple-50">
+        <section className="p-8 flex flex-col gap-10 h-full bg-purple-50 overflow-y-auto">
             <header>Logo</header>
             <nav className="flex flex-col gap-4">
                 <Button active>Publications</Button>
