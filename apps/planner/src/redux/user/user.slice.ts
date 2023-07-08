@@ -25,15 +25,8 @@ interface UserState {
 }
 
 const initialState: UserState = {
-    token:
-        typeof window == "undefined"
-            ? null
-            : localStorage.getItem("session_token"),
-    data: JSON.parse(
-        typeof window == "undefined"
-            ? null
-            : localStorage.getItem("session_data")
-    ),
+    token: null,
+    data: null,
     thread: [],
 };
 
@@ -47,6 +40,15 @@ const userSlice = createSlice({
     reducers: {
         removeUserData: (state) => {
             state.data = null;
+        },
+        loadUserToken: (state, { payload }: { payload: string }) => {
+            state.token = payload;
+        },
+        loadUserData: (
+            state,
+            { payload }: { payload: typeof initialState.data }
+        ) => {
+            state.data = payload;
         },
     },
     extraReducers: (builder) =>
@@ -99,8 +101,9 @@ const userSlice = createSlice({
 });
 
 // sync actions
-export const { removeUserData } = userSlice.actions;
+export const { removeUserData, loadUserData, loadUserToken } =
+    userSlice.actions;
 // async actions
-export { loginUser, getMe };
+export { getMe, loginUser };
 // reducer
 export default userSlice.reducer;
