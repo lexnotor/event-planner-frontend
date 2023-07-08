@@ -2,6 +2,7 @@
 
 import { PostInfo } from "@/redux";
 import { Popover } from "antd";
+import Image from "next/image";
 import { RiMore2Fill } from "react-icons/ri";
 
 const Post = ({ postData }: { postData?: PostInfo }) => {
@@ -12,7 +13,7 @@ const Post = ({ postData }: { postData?: PostInfo }) => {
                 <div className="">
                     <p className="font-semibold">{postData?.author}</p>
                     <p className="font-light text-neutral-700 text-xs">
-                        12 Avr 2023
+                        {new Date(postData.date).toDateString()}
                     </p>
                 </div>
                 <Popover
@@ -34,10 +35,20 @@ const Post = ({ postData }: { postData?: PostInfo }) => {
                 </Popover>
             </header>
             <main>
-                <p>{postData.text}</p>
-                <div className="flex gap-4 mt-4">
-                    <span className="basis-1/2 h-44 bg-neutral-300 rounded-xl"></span>
-                    <span className="basis-1/2 h-44 bg-neutral-300 rounded-xl"></span>
+                <p>{postData?.text}</p>
+                <div className="flex justify-center gap-4 mt-4">
+                    {postData.post_photo.map((photo) => (
+                        <Image
+                            width={500}
+                            height={200}
+                            alt="Photo"
+                            src={photo?.photo?.link}
+                            key={photo?.id}
+                            className="rounded-lg"
+                        />
+                    ))}
+                    {/* <span className="basis-1/2 h-44 bg-neutral-300 rounded-xl"></span>
+                    <span className="basis-1/2 h-44 bg-neutral-300 rounded-xl"></span> */}
                 </div>
             </main>
             <footer className="border-t min-h-[2rem]">

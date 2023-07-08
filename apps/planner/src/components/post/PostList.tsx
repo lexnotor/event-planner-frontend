@@ -24,7 +24,7 @@ const PostList = () => {
                 <Post key={post.id} postData={post} />
             ))}
             {isPostLoading && (
-                <span className="w-4 h-4 inline-block animate-spin border border-transparent border-t-neutral-200 rounded-full" />
+                <span className="w-8 h-8 inline-block animate-spin border border-transparent border-t-neutral-900 rounded-full" />
             )}
         </div>
     );
