@@ -14,6 +14,12 @@ const useAuth = () => {
         );
     }, [account.thread]);
 
+    const isPendingSignup = useMemo(() => {
+        return !!account.thread.find(
+            (task) => task.action == "SIGNUP" && task.status == "LOADING"
+        );
+    }, [account.thread]);
+
     useEffect(() => {
         const userData = localStorage.getItem("session_data");
         if (userData && !account.data && account.token)
@@ -26,7 +32,7 @@ const useAuth = () => {
         if (!account.token && token) dispatch(loadUserToken(token));
     }, [dispatch, account.token]);
 
-    return { account, isPendindLogin };
+    return { account, isPendindLogin, isPendingSignup };
 };
 
 export default useAuth;

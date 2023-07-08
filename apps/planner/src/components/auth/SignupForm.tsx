@@ -1,9 +1,11 @@
 "use client";
 import useToggle from "@/hooks/toggle";
+import useAuth from "@/hooks/useAuth";
 import { Dispatcher } from "@/redux/store";
 import { signupUser } from "@/redux/user/user.slice";
 import Link from "next/link";
-import { FormEventHandler, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { FormEventHandler, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import Checkbox from "ui/Checkbox";
 
@@ -27,14 +29,21 @@ const SignupForm = () => {
         ];
 
         const payload = {
-            first,
-            last,
+            firstname: first,
+            lastname: last,
+            username: email,
             email,
             secret,
         };
 
         dispatch(signupUser(payload));
     };
+
+    const { account, isPendingSignup } = useAuth();
+    const router = useRouter();
+    useEffect(() => {
+        if (account.token) router.push("/");
+    });
 
     return (
         <form className="flex flex-col gap-6" onSubmit={submit}>
@@ -88,7 +97,14 @@ const SignupForm = () => {
                     className="block py-2 px-4 text-center rounded-lg border bg-neutral-700 text-white font-semibold w-full disabled:bg-neutral-400 disabled:cursor-not-allowed"
                     disabled={!policiesChecked}
                 >
-                    Créer compte
+                    {isPendingSignup ? (
+                        <span
+                            hidden={isPendingSignup}
+                            className="w-4 h-4 inline-block animate-spin border border-transparent border-t-neutral-200 rounded-full"
+                        />
+                    ) : (
+                        <span>Créer compte</span>
+                    )}
                 </button>
                 <Link href={"/login"} className="block text-center underline">
                     J'ai déjà un compte

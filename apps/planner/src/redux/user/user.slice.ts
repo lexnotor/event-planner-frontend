@@ -16,7 +16,7 @@ interface UserState {
     };
     thread: {
         id: string;
-        action: "LOGIN" | "GET_ME";
+        action: "LOGIN" | "GET_ME" | "SIGNUP";
         status: Status;
         payload?: object;
         message?: { content: string; display: boolean };
@@ -82,6 +82,26 @@ const userSlice = createSlice({
             .addCase(loginUser.rejected, (state, { meta }) => {
                 localStorage.removeItem("session_token");
                 state.token = null;
+                const tasks = state.thread.find((task) => {
+                    return task.id == meta.requestId;
+                });
+                if (tasks) tasks.status = "ERROR";
+            })
+
+            .addCase(signupUser.pending, (state, { meta }) => {
+                state.thread.push({
+                    action: "SIGNUP",
+                    id: meta.requestId,
+                    status: "LOADING",
+                });
+            })
+            .addCase(signupUser.fulfilled, (state, { meta }) => {
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "FULLFILED";
+            })
+            .addCase(signupUser.rejected, (state, { meta }) => {
                 const tasks = state.thread.find((task) => {
                     return task.id == meta.requestId;
                 });

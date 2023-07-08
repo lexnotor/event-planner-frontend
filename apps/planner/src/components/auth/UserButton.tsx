@@ -28,10 +28,13 @@ const UserButton = () => {
 
     return account.data ? (
         <div className="flex items-center gap-2">
-            <div className="inline-block w-9 h-9 rounded-full bg-purple-400"></div>
-            <div className="flex flex-col justify-center gap-0">
+            <div className="w-9 h-9 rounded-full bg-purple-400"></div>
+            <div className="flex flex-col justify-center gap-0 max-w-[calc(100%-2.5rem-1rem-1rem)]">
                 <span>{`${account.data?.firstname} ${account.data?.lastname}`}</span>
-                <span className="text-neutral-500">
+                <span
+                    className="text-neutral-500 text-ellipsis text-xs overflow-hidden whitespace-nowrap"
+                    title={`@${account.data?.username}`}
+                >
                     @{`${account.data?.username}`}
                 </span>
             </div>

@@ -3,6 +3,7 @@ import { AsyncThunkPayloadCreator } from "@reduxjs/toolkit";
 import axios from "axios";
 import { authUrl, userUrl } from "../helper.api";
 import { RootState } from "../store";
+import { loginUser as loginUserAction } from "./user.slice";
 
 const signupUser: AsyncThunkPayloadCreator<any, any> = async (
     payload: {
@@ -25,6 +26,7 @@ const signupUser: AsyncThunkPayloadCreator<any, any> = async (
             },
             { auth: { username, password: secret } }
         );
+        thunkAPI.dispatch(loginUserAction({ secret, username }));
         return res.data.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.message || "SIGNUP_FAILED");

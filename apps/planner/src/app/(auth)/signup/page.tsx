@@ -1,5 +1,6 @@
 import GoogleSignup from "@/components/auth/GoogleSignup";
 import SignupForm from "@/components/auth/SignupForm";
+import StoreProvider from "@/redux/StoreProvider";
 
 const Page = () => {
     return (
@@ -23,7 +24,9 @@ const Page = () => {
             </section>
 
             <section>
-                <SignupForm />
+                <StoreProvider>
+                    <SignupForm />
+                </StoreProvider>
             </section>
         </>
     );
