@@ -4,7 +4,6 @@ import { Dispatcher } from "@/redux/store";
 import { logoutUser } from "@/redux/user/user.slice";
 import { Popover } from "antd";
 import Link from "next/link";
-import React from "react";
 import { RiMore2Fill } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 
