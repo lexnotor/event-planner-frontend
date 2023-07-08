@@ -4,7 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 let num: any = 0;
 
 function repeatperhour() {
-    fetch(`${process.env.BACKEND}/api/v1/cron`, { cache: "no-cache" })
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/v1/cron`, {
+        cache: "no-cache",
+    })
         .then((res) => res.json())
         .then(console.log)
         .catch(console.error);
