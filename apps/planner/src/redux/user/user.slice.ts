@@ -16,7 +16,7 @@ interface UserState {
     };
     thread: {
         id: string;
-        action: string;
+        action: "LOGIN" | "GET_ME";
         status: Status;
         payload?: object;
         message?: { content: string; display: boolean };
@@ -30,6 +30,8 @@ const initialState: UserState = {
     thread: [],
 };
 
+const signupUser = createAsyncThunk("user/signupUser", userServices.signupUser);
+
 const loginUser = createAsyncThunk("user/loginUser", userServices.loginUser);
 
 const getMe = createAsyncThunk("user/getMyInfo", userServices.getMyInfo);
@@ -40,6 +42,15 @@ const userSlice = createSlice({
     reducers: {
         removeUserData: (state) => {
             state.data = null;
+        },
+        logoutUser: (state) => {
+            localStorage.removeItem("session_data");
+            localStorage.removeItem("session_token");
+            state.token = null;
+            state.data = null;
+            window.location.href == "/"
+                ? window.location.reload()
+                : (window.location.href = "/");
         },
         loadUserToken: (state, { payload }: { payload: string }) => {
             state.token = payload;
@@ -66,15 +77,15 @@ const userSlice = createSlice({
                 const tasks = state.thread.find(
                     (task) => task.id == meta.requestId
                 );
-                if (tasks) tasks.status == "FULLFILED";
+                if (tasks) tasks.status = "FULLFILED";
             })
             .addCase(loginUser.rejected, (state, { meta }) => {
                 localStorage.removeItem("session_token");
                 state.token = null;
-                const tasks = state.thread.find(
-                    (task) => task.id == meta.requestId
-                );
-                if (tasks) tasks.status == "ERROR";
+                const tasks = state.thread.find((task) => {
+                    return task.id == meta.requestId;
+                });
+                if (tasks) tasks.status = "ERROR";
             })
 
             .addCase(getMe.pending, (state, { meta }) => {
@@ -89,21 +100,21 @@ const userSlice = createSlice({
                 const tasks = state.thread.find(
                     (task) => task.id == meta.requestId
                 );
-                if (tasks) tasks.status == "FULLFILED";
+                if (tasks) tasks.status = "FULLFILED";
                 state.data = payload;
             })
             .addCase(getMe.rejected, (state, { meta }) => {
                 const tasks = state.thread.find(
                     (task) => task.id == meta.requestId
                 );
-                if (tasks) tasks.status == "ERROR";
+                if (tasks) tasks.status = "ERROR";
             }),
 });
 
 // sync actions
-export const { removeUserData, loadUserData, loadUserToken } =
+export const { removeUserData, loadUserData, loadUserToken, logoutUser } =
     userSlice.actions;
 // async actions
-export { getMe, loginUser };
+export { getMe, loginUser, signupUser };
 // reducer
 export default userSlice.reducer;

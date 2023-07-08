@@ -1,11 +1,14 @@
 import { Button } from "ui";
 import UserButton from "./auth/UserButton";
 import StoreProvider from "@/redux/StoreProvider";
+import Link from "next/link";
 
 const MainSidebar = () => {
     return (
         <section className="p-8 flex flex-col gap-10 h-full bg-purple-50 overflow-y-auto">
-            <header>Logo</header>
+            <header>
+                <Link href={"/"}>Logo</Link>
+            </header>
             <nav className="flex flex-col gap-4">
                 <Button active>Publications</Button>
                 <Button>Modèle d invitations</Button>

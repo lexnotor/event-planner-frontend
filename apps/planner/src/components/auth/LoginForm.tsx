@@ -34,11 +34,12 @@ const LoginForm = () => {
     };
 
     // Account Verification
-    const { account } = useAuth();
+    const { account, isPendindLogin } = useAuth();
     const router = useRouter();
     useEffect(() => {
         if (account.token) router.push("/");
     });
+
     return (
         <form className="flex flex-col gap-6" onSubmit={submit}>
             <div className="flex gap-4">
@@ -71,8 +72,18 @@ const LoginForm = () => {
                 </label>
             </div>
             <div className="flex gap-4 flex-col">
-                <button className="block py-2 px-4 text-center rounded-lg border bg-neutral-700 text-white font-semibold w-full">
-                    Se connecter
+                <button
+                    className="block py-2 px-4 text-center rounded-lg border bg-neutral-700 text-white font-semibold w-full"
+                    disabled={isPendindLogin}
+                >
+                    {isPendindLogin ? (
+                        <span
+                            hidden={isPendindLogin}
+                            className="w-4 h-4 inline-block animate-spin border border-transparent border-t-neutral-200 rounded-full"
+                        />
+                    ) : (
+                        <span>Se connecter</span>
+                    )}
                 </button>
                 <Link href={"/signup"} className="block text-center underline">
                     Je n'ai pas encore de compte

@@ -1,6 +1,7 @@
 import ModalManager from "@/components/modals/ModalManager";
 import StoreProvider from "@/redux/StoreProvider";
 import "../globals.css";
+import Link from "next/link";
 
 export const metadata = {
     title: "Logo - ",
@@ -15,7 +16,9 @@ export default function RootLayout({
     return (
         <html lang="fr">
             <body>
-                <h1 className="mt-7 ml-[7vh]">Logo</h1>
+                <h1 className="mt-7 ml-[7vh]">
+                    <Link href={"/"}>Logo</Link>
+                </h1>
                 <main className="flex gap-4 h-screen max-w-[1500px] mx-auto p-[7vh]">
                     <div className="w-[25rem]">{children}</div>
                     <div className="grow">image</div>

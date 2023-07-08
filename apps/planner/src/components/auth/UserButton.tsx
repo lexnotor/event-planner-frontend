@@ -1,10 +1,30 @@
 "use client";
 import useAuth from "@/hooks/useAuth";
+import { Dispatcher } from "@/redux/store";
+import { logoutUser } from "@/redux/user/user.slice";
+import { Popover } from "antd";
 import Link from "next/link";
 import React from "react";
+import { RiMore2Fill } from "react-icons/ri";
+import { useDispatch } from "react-redux";
 
 const UserButton = () => {
+    const dispatch = useDispatch<Dispatcher>();
     const { account } = useAuth();
+
+    const logout = () => {
+        dispatch(logoutUser());
+    };
+    if (
+        account.thread.find(
+            (item) => item.status == "LOADING" && item.action == "LOGIN"
+        )
+    )
+        return (
+            <div className="flex items-center justify-center">
+                <span className="w-8 h-8 animate-spin border-t-2 border-t-neutral-800" />
+            </div>
+        );
 
     return account.data ? (
         <div className="flex items-center gap-2">
@@ -15,6 +35,34 @@ const UserButton = () => {
                     @{`${account.data?.username}`}
                 </span>
             </div>
+            <Popover
+                overlayInnerStyle={{ padding: "0" }}
+                trigger={["click"]}
+                arrow={false}
+                placement="topLeft"
+                destroyTooltipOnHide
+                color="green-inverse"
+                content={
+                    <ul className="[&>li]:py-1 [&>li]:px-4 [&>li]:duration-300 flex flex-col gap-2">
+                        <li
+                            onClick={logout}
+                            className="cursor-pointer hover:text-purple-400 hover:bg-purple-200"
+                        >
+                            Logout
+                        </li>
+                        <li
+                            onClick={logout}
+                            className="cursor-pointer hover:text-purple-400 hover:bg-purple-200"
+                        >
+                            Logout
+                        </li>
+                    </ul>
+                }
+            >
+                <div className="ml-auto cursor-pointer text-xl hover:text-purple-400 transition-colors duration-500 rounded-full">
+                    <RiMore2Fill />
+                </div>
+            </Popover>
         </div>
     ) : (
         <div>

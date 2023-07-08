@@ -1,10 +1,16 @@
 "use client";
 import useToggle from "@/hooks/toggle";
+import { Dispatcher } from "@/redux/store";
+import { signupUser } from "@/redux/user/user.slice";
 import Link from "next/link";
 import { FormEventHandler, useRef } from "react";
+import { useDispatch } from "react-redux";
 import Checkbox from "ui/Checkbox";
 
 const SignupForm = () => {
+    const dispatch = useDispatch<Dispatcher>();
+
+    // Form data
     const [policiesChecked, togglePoliciesChecked] = useToggle(true);
 
     const firstRef = useRef<HTMLInputElement>(null);
@@ -27,7 +33,7 @@ const SignupForm = () => {
             secret,
         };
 
-        return payload;
+        dispatch(signupUser(payload));
     };
 
     return (
