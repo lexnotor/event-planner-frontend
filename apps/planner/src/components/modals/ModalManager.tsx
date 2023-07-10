@@ -6,6 +6,7 @@ import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AntConfig from "ui/AntConfig";
 import NewPost from "./NewPost";
+import StoreProvider from "@/redux/StoreProvider";
 
 const ModalManager = () => {
     const modals = useSelector((state: RootState) => state.modalmanager);
@@ -14,13 +15,19 @@ const ModalManager = () => {
 
     return (
         <AntConfig>
-            <div className="absolute bottom-0">
-                {modals.modal_id == "NEW_POST" ? (
-                    <NewPost close={close} id="NEW_POST" {...modals.payload} />
-                ) : (
-                    <></>
-                )}
-            </div>
+            <StoreProvider>
+                <div className="absolute bottom-0">
+                    {modals.modal_id == "NEW_POST" ? (
+                        <NewPost
+                            close={close}
+                            id="NEW_POST"
+                            {...modals.payload}
+                        />
+                    ) : (
+                        <></>
+                    )}
+                </div>
+            </StoreProvider>
         </AntConfig>
     );
 };

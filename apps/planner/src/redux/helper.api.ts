@@ -25,6 +25,7 @@ const userUrl = {
 
 const postUrl = {
     getPosts: `${baseUrl}/post`,
+    createPost: `${baseUrl}/post`,
 };
 
 export { apiFetch, authUrl, baseUrl, userUrl, postUrl };
