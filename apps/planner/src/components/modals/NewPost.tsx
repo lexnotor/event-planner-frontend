@@ -33,6 +33,7 @@ const NewPost = ({ close, id }: { close: CloseModalFunction; id: string }) => {
         payload.author = `${account.data.firstname} ${account.data.lastname}`;
 
         dispatch(createPost(payload));
+        close(id);
     };
 
     return (
