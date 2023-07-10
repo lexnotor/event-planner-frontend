@@ -4,6 +4,8 @@ import { PostInfo } from "@/redux";
 import { Popover } from "antd";
 import Image from "next/image";
 import { RiMore2Fill } from "react-icons/ri";
+import { BiLike } from "react-icons/bi";
+import { BsBookmarkCheck } from "react-icons/bs";
 
 const Post = ({ postData }: { postData?: PostInfo }) => {
     return (
@@ -51,9 +53,31 @@ const Post = ({ postData }: { postData?: PostInfo }) => {
                     <span className="basis-1/2 h-44 bg-neutral-300 rounded-xl"></span> */}
                 </div>
             </main>
-            <footer className="border-t min-h-[2rem]">
-                <div></div>
-                <div></div>
+            <footer className="border-t min-h-[2rem] flex [&>div]:basis-1/4 [&>div]:justify-center [&>div]:duration-500 items-end">
+                <div className="flex gap-1 cursor-pointer hover:bg-neutral-200">
+                    <span className="text-xl">
+                        <BiLike />
+                    </span>
+                    <span>2k</span>
+                </div>
+                <div className="flex gap-1 cursor-pointer hover:bg-neutral-200">
+                    <span className="text-xl">
+                        <BiLike />
+                    </span>
+                    <span>2k</span>
+                </div>
+                <div className="flex gap-1 cursor-pointer hover:bg-neutral-200">
+                    <span className="text-xl">
+                        <BiLike />
+                    </span>
+                    <span>2k</span>
+                </div>
+                <div className="flex gap-1 cursor-pointer hover:bg-neutral-200">
+                    <span className="text-xl">
+                        <BsBookmarkCheck />
+                    </span>
+                    <span>2k</span>
+                </div>
             </footer>
         </div>
     );
