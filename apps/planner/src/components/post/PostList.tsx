@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import Post from "../Post";
+import Post from "./Post";
 import { useDispatch } from "react-redux";
 import usePost from "@/hooks/usePost";
 import { getPosts } from "@/redux/post/post.slice";

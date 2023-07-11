@@ -9,7 +9,7 @@ import { BsBookmarkCheck } from "react-icons/bs";
 
 const Post = ({ postData }: { postData?: PostInfo }) => {
     return (
-        <div className="py-4 px-8 bg-white rounded-xl flex flex-col gap-4">
+        <div className="py-4 px-8 bg-white rounded-xl flex flex-col gap-4 max-w-[35rem] w-full mx-auto border">
             <header className="flex gap-2 justify-between items-center">
                 <div className="w-10 h-10 rounded-full bg-purple-500" />
                 <div className="">
@@ -46,7 +46,7 @@ const Post = ({ postData }: { postData?: PostInfo }) => {
                             alt="Photo"
                             src={photo?.photo?.link}
                             key={photo?.id}
-                            className="rounded-lg"
+                            className="rounded-lg !max-h-[20rem] w-full aspect-video object-cover inline-block"
                         />
                     ))}
                     {/* <span className="basis-1/2 h-44 bg-neutral-300 rounded-xl"></span>
