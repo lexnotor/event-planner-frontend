@@ -1,7 +1,8 @@
+import DesignList from "@/components/design/DesignList";
 import SearchBar from "@/components/design/SearchBar";
 import TagList from "@/components/design/TagList";
-import RightSidebar from "@/components/sidebar/RightSidebar";
-import StoreProvider from "@/redux/StoreProvider";
+// import RightSidebar from "@/components/sidebar/RightSidebar";
+// import StoreProvider from "@/redux/StoreProvider";
 
 const Page = () => {
     return (
@@ -9,12 +10,13 @@ const Page = () => {
             <div className="grow flex flex-col gap-4">
                 <SearchBar />
                 <TagList />
+                <DesignList />
             </div>
-            <aside className="sticky shrink-0 top-0 w-72">
+            {/* <aside className="sticky shrink-0 top-0 w-72">
                 <StoreProvider>
                     <RightSidebar />
                 </StoreProvider>
-            </aside>
+            </aside> */}
         </section>
     );
 };

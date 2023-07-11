@@ -3,7 +3,7 @@ import { Button } from "ui";
 
 const TagList = () => {
     return (
-        <ul className="flex justify-between" style={{ fontSize: "85%" }}>
+        <ul className="flex justify-start gap-2" style={{ fontSize: "85%" }}>
             <li>
                 <Button size="small">Mariage</Button>
             </li>
