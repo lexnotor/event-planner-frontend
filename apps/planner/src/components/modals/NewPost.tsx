@@ -9,6 +9,7 @@ import type { TextAreaRef } from "antd/es/input/TextArea";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "ui";
+import ImageUploader from "../ImageUploader";
 
 const NewPost = ({ close, id }: { close: CloseModalFunction; id: string }) => {
     const dispatch = useDispatch<Dispatcher>();
@@ -23,14 +24,17 @@ const NewPost = ({ close, id }: { close: CloseModalFunction; id: string }) => {
 
     const { account } = useAuth();
     const postTextRef = useRef<TextAreaRef>(null);
+    const postImageRef = useRef<{ file?: File }>({});
 
     const submitPost = () => {
         const { value: postText } =
             postTextRef.current.resizableTextArea.textArea;
+        const { file } = postImageRef.current;
 
-        const payload: Record<string, string | Date> = {};
+        const payload: Record<string, string | Date | File> = {};
         payload.text = postText;
         payload.author = `${account.data.firstname} ${account.data.lastname}`;
+        payload.file = file;
 
         dispatch(createPost(payload));
         close(id);
@@ -84,6 +88,7 @@ const NewPost = ({ close, id }: { close: CloseModalFunction; id: string }) => {
                 <span className="w-32 h-32 rounded-lg bg-neutral-100 flex justify-center items-center">
                     add picture
                 </span>
+                <ImageUploader ref={postImageRef} />
             </div>
         </Modal>
     );

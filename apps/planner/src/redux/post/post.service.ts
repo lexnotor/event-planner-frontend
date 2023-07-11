@@ -23,7 +23,7 @@ const createPost: AsyncThunkPayloadCreator<PostInfo, PostInfo> = async (
     try {
         const { user } = thunkAPI.getState() as RootState;
 
-        const res: AxiosResponse<ApiResponse<PostInfo>> = await axios.post(
+        const res: AxiosResponse<ApiResponse<PostInfo>> = await axios.postForm(
             postUrl.createPost,
             payload,
             { headers: { Authorization: `Bearer ${user.token}` } }
