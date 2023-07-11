@@ -4,10 +4,10 @@ import { usePathname } from "next/navigation";
 
 const links = [
     { label: "Publications", path: "/", exact: true },
-    { label: "Modèle d invitations", path: "/te", exact: false },
-    { label: "Salle de céremoni", path: "/ro", exact: false },
-    { label: "Évenemment", path: "/ev", exact: false },
-    { label: "Discussion", path: "/di", exact: false },
+    { label: "Modèle d invitations", path: "/design", exact: false },
+    { label: "Salle de céremonie", path: "/room", exact: false },
+    { label: "Évenemment", path: "/event", exact: false },
+    { label: "Discussion", path: "/chat", exact: false },
 ];
 
 const Navigation = () => {
