@@ -1,7 +1,7 @@
-import { Button } from "ui";
-import UserButton from "./auth/UserButton";
 import StoreProvider from "@/redux/StoreProvider";
 import Link from "next/link";
+import UserButton from "../auth/UserButton";
+import Navigation from "./Navigation";
 
 const MainSidebar = () => {
     return (
@@ -10,11 +10,7 @@ const MainSidebar = () => {
                 <Link href={"/"}>Logo</Link>
             </header>
             <nav className="flex flex-col gap-4">
-                <Button active>Publications</Button>
-                <Button>Modèle d invitations</Button>
-                <Button>Salle de céremonie</Button>
-                <Button>Évenemment</Button>
-                <Button>Discussion</Button>
+                <Navigation />
             </nav>
             <footer className="mt-auto">
                 <StoreProvider>

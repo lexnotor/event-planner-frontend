@@ -3,13 +3,13 @@
 import * as React from "react";
 
 export const Button = ({
-    children,
+    children = <></>,
     center = false,
     active = false,
     size = "large",
     ...rest
 }: {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     center?: boolean;
     active?: boolean;
     size?: "small" | "middle" | "large";

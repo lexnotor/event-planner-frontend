@@ -1,4 +1,4 @@
-import MainSidebar from "@/components/MainSidebar";
+import MainSidebar from "@/components/sidebar/MainSidebar";
 import ModalManager from "@/components/modals/ModalManager";
 import StoreProvider from "@/redux/StoreProvider";
 import "../globals.css";
