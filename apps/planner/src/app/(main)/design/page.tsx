@@ -1,7 +1,22 @@
-import React from "react";
+import SearchBar from "@/components/design/SearchBar";
+import TagList from "@/components/design/TagList";
+import RightSidebar from "@/components/sidebar/RightSidebar";
+import StoreProvider from "@/redux/StoreProvider";
 
 const Page = () => {
-    return <div>Design</div>;
+    return (
+        <section className="flex h-screen overflow-y-auto py-4 px-8 gap-8 items-start">
+            <div className="grow flex flex-col gap-4">
+                <SearchBar />
+                <TagList />
+            </div>
+            <aside className="sticky shrink-0 top-0 w-72">
+                <StoreProvider>
+                    <RightSidebar />
+                </StoreProvider>
+            </aside>
+        </section>
+    );
 };
 
 export default Page;

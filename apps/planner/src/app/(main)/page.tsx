@@ -1,4 +1,4 @@
-import RightSidebar from "@/components/RightSidebar";
+import RightSidebar from "@/components/sidebar/RightSidebar";
 import PostList from "@/components/post/PostList";
 import StoreProvider from "@/redux/StoreProvider";
 

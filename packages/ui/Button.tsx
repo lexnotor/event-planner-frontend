@@ -7,17 +7,19 @@ export const Button = ({
     center = false,
     active = false,
     size = "large",
+    style = {},
     ...rest
 }: {
     children?: React.ReactNode;
     center?: boolean;
     active?: boolean;
     size?: "small" | "middle" | "large";
+    style?: React.CSSProperties;
 } & React.DOMAttributes<HTMLButtonElement>) => {
     return (
         <button
             {...rest}
-            style={{ textAlign: center ? "center" : "left" }}
+            style={{ textAlign: center ? "center" : "left", ...style }}
             className={` ${
                 size == "small" ? "py-1" : size == "large" ? "py-3" : "py-2"
             } px-4 ${
