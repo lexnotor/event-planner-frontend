@@ -4,7 +4,7 @@ import StoreProvider from "@/redux/StoreProvider";
 
 export default function Home() {
     return (
-        <section className="flex h-screen overflow-y-auto py-4 px-8 gap-8 items-start">
+        <section className="flex h-screen overflow-y-auto py-4 px-4 gap-8 items-start">
             <StoreProvider>
                 <PostList />
             </StoreProvider>

@@ -19,7 +19,7 @@ const PostList = () => {
         }
     }, [dispatch, posts]);
     return (
-        <div className="grow flex flex-col gap-8">
+        <div className="grow flex flex-col gap-4">
             {posts.listPost.map((post) => (
                 <Post key={post.id} postData={post} />
             ))}

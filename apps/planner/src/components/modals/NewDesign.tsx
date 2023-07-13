@@ -5,6 +5,9 @@ import { TextAreaRef } from "antd/es/input/TextArea";
 import { useRef } from "react";
 import { Button } from "ui";
 import ImageUploader from "../ImageUploader";
+import { useDispatch } from "react-redux";
+import { Dispatcher } from "@/redux/store";
+import { createDesign } from "@/redux/design/design.slice";
 
 const NewDesign = ({
     close,
@@ -13,6 +16,8 @@ const NewDesign = ({
     close: CloseModalFunction;
     id: string;
 }) => {
+    const dispatch = useDispatch<Dispatcher>();
+
     const designTextRef = useRef<TextAreaRef>(null);
     const designImageRef = useRef<{ file?: File }>({});
 
@@ -23,11 +28,12 @@ const NewDesign = ({
         const { file } = designImageRef.current;
 
         const payload = {
-            designText,
+            text: designText,
             file,
         };
 
-        console.log(payload);
+        dispatch(createDesign(payload));
+        close(id);
     };
 
     return (
