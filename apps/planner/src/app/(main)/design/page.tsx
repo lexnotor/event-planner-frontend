@@ -1,6 +1,7 @@
 import DesignList from "@/components/design/DesignList";
 import SearchBar from "@/components/design/SearchBar";
 import TagList from "@/components/design/TagList";
+import StoreProvider from "@/redux/StoreProvider";
 // import RightSidebar from "@/components/sidebar/RightSidebar";
 // import StoreProvider from "@/redux/StoreProvider";
 
@@ -10,7 +11,9 @@ const Page = () => {
             <div className="grow flex flex-col gap-4">
                 <SearchBar />
                 <TagList />
-                <DesignList />
+                <StoreProvider>
+                    <DesignList />
+                </StoreProvider>
             </div>
             {/* <aside className="sticky shrink-0 top-0 w-72">
                 <StoreProvider>
