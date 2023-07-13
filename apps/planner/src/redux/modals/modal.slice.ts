@@ -1,12 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { modal_id: null, thread: [], payload: null };
+enum ModalID {
+    NEW_POST,
+    NEW_DESIGN,
+}
+
+type ModalData = { modal_id: ModalID; payload?: any };
+
+type ModalState = ModalData & { thread: ModalData[] };
+
+const initialState: ModalState = { modal_id: null, thread: [], payload: null };
 
 const modalSlice = createSlice({
     initialState,
     name: "modalmanager",
     reducers: {
-        openModal: (state, { payload }) => {
+        openModal: (state, { payload }: { payload: ModalData }) => {
             if (state.modal_id) state.thread.push(payload);
             else {
                 state.modal_id = payload.modal_id;
@@ -25,6 +34,9 @@ const modalSlice = createSlice({
     },
 });
 
+// sync actions
 export const { closeModal, openModal } = modalSlice.actions;
-
+// types
+export { ModalID };
+// reducer
 export default modalSlice.reducer;

@@ -9,9 +9,9 @@ const Page = () => {
     return (
         <section className="flex h-screen overflow-y-auto py-4 px-8 gap-8 items-start">
             <div className="grow flex flex-col gap-4">
-                <SearchBar />
-                <TagList />
                 <StoreProvider>
+                    <SearchBar />
+                    <TagList />
                     <DesignList />
                 </StoreProvider>
             </div>

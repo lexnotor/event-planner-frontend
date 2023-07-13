@@ -1,6 +1,6 @@
 "use client";
 
-import { openModal } from "@/redux/modals/modal.slice";
+import { ModalID, openModal } from "@/redux/modals/modal.slice";
 import { Dispatcher } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { Button } from "ui";
@@ -16,7 +16,7 @@ const RightSidebar = () => {
                     size="middle"
                     center
                     onClick={() =>
-                        dispatch(openModal({ modal_id: "NEW_POST" }))
+                        dispatch(openModal({ modal_id: ModalID.NEW_POST }))
                     }
                 >
                     New Post

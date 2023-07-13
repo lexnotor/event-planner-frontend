@@ -1,6 +1,6 @@
 "use client";
 
-import { closeModal } from "@/redux/modals/modal.slice";
+import { ModalID, closeModal } from "@/redux/modals/modal.slice";
 import type { Dispatcher, RootState } from "@/redux/store";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,16 +18,16 @@ const ModalManager = () => {
         <AntConfig>
             <StoreProvider>
                 <div className="absolute bottom-0">
-                    {modals.modal_id == "NEW_POST" ? (
+                    {modals.modal_id == ModalID.NEW_POST ? (
                         <NewPost
                             close={close}
-                            id="NEW_POST"
+                            id={ModalID.NEW_POST}
                             {...modals.payload}
                         />
-                    ) : modals.modal_id == "NEW_POST" || true ? (
+                    ) : modals.modal_id == ModalID.NEW_DESIGN ? (
                         <NewDesign
                             close={close}
-                            id="NEW_POST"
+                            id={ModalID.NEW_DESIGN}
                             {...modals.payload}
                         />
                     ) : (

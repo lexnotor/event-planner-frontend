@@ -1,9 +1,14 @@
 "use client";
+import { ModalID, openModal } from "@/redux/modals/modal.slice";
+import { Dispatcher } from "@/redux/store";
 import React from "react";
 import { AiOutlinePlus, AiOutlineSearch } from "react-icons/ai";
+import { useDispatch } from "react-redux";
 import { Button } from "ui";
 
 const SearchBar = () => {
+    const dispatch = useDispatch<Dispatcher>();
+
     return (
         <div className="flex justify-between">
             <div className="w-80 bg-white border overflow-hidden rounded-r-full rounded-l-full">
@@ -19,7 +24,11 @@ const SearchBar = () => {
                 </label>
             </div>
             <div>
-                <Button>
+                <Button
+                    onClick={() =>
+                        dispatch(openModal({ modal_id: ModalID.NEW_DESIGN }))
+                    }
+                >
                     <div className="flex gap-1 items-center">
                         <span>
                             <AiOutlinePlus />
