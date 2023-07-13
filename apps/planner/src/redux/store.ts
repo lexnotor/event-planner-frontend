@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import designReducer from "./design/design.slice";
 import modalReducer from "./modals/modal.slice";
 import postReducer from "./post/post.slice";
 import userReducer from "./user/user.slice";
@@ -8,6 +9,7 @@ const store = configureStore({
         modalmanager: modalReducer,
         posts: postReducer,
         user: userReducer,
+        design: designReducer,
     },
 });
 

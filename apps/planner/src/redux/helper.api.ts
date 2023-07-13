@@ -23,9 +23,16 @@ const userUrl = {
     getUser: `${baseUrl}/user`,
 };
 
+const designUrl = {
+    getDesigns: `${baseUrl}/design`,
+    getOneDesign: `${baseUrl}/design`,
+    createDesign: `${baseUrl}/design`,
+};
+
 const postUrl = {
     getPosts: `${baseUrl}/post`,
+    getOnePost: `${baseUrl}/post`,
     createPost: `${baseUrl}/post`,
 };
 
-export { apiFetch, authUrl, baseUrl, userUrl, postUrl };
+export { apiFetch, authUrl, baseUrl, userUrl, postUrl, designUrl };
