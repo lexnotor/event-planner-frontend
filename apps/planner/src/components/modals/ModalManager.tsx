@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AntConfig from "ui/AntConfig";
 import NewPost from "./NewPost";
 import StoreProvider from "@/redux/StoreProvider";
+import NewDesign from "./NewDesign";
 
 const ModalManager = () => {
     const modals = useSelector((state: RootState) => state.modalmanager);
@@ -19,6 +20,12 @@ const ModalManager = () => {
                 <div className="absolute bottom-0">
                     {modals.modal_id == "NEW_POST" ? (
                         <NewPost
+                            close={close}
+                            id="NEW_POST"
+                            {...modals.payload}
+                        />
+                    ) : modals.modal_id == "NEW_POST" || true ? (
+                        <NewDesign
                             close={close}
                             id="NEW_POST"
                             {...modals.payload}
