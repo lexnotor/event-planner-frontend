@@ -27,7 +27,7 @@ const UserButton = () => {
 
     return account.data ? (
         <div className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-full bg-purple-400"></div>
+            <div className="w-9 h-9 rounded-full bg-neutral-600"></div>
             <div className="flex flex-col justify-center gap-0 max-w-[calc(100%-2.5rem-1rem-1rem)]">
                 <span>{`${account.data?.firstname} ${account.data?.lastname}`}</span>
                 <span
@@ -38,23 +38,23 @@ const UserButton = () => {
                 </span>
             </div>
             <Popover
-                overlayInnerStyle={{ padding: "0" }}
+                overlayInnerStyle={{ padding: "0", overflow: "hidden" }}
                 trigger={["click"]}
                 arrow={false}
                 placement="topLeft"
                 destroyTooltipOnHide
                 color="green-inverse"
                 content={
-                    <ul className="[&>li]:py-1 [&>li]:px-4 [&>li]:duration-300 flex flex-col gap-2">
+                    <ul className="[&>li]:py-2 [&>li]:px-8 [&>li]:duration-300 flex flex-col gap-0">
                         <li
                             onClick={logout}
-                            className="cursor-pointer hover:text-purple-400 hover:bg-purple-200"
+                            className="cursor-pointer hover:text-white hover:bg-neutral-600"
                         >
                             Logout
                         </li>
                         <li
                             onClick={logout}
-                            className="cursor-pointer hover:text-purple-400 hover:bg-purple-200"
+                            className="cursor-pointer hover:text-white hover:bg-neutral-600"
                         >
                             Logout
                         </li>
