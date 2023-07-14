@@ -3,6 +3,8 @@ import usePost from "@/hooks/usePost";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { SpinLoader } from "ui";
+import Post from "./Post";
+import Comment from "./Comment";
 
 const PostDetails = () => {
     const [postId, setPostId] = useState(null);
@@ -15,7 +17,14 @@ const PostDetails = () => {
         setPostId(searchParams.get("post"));
     }, [searchParams]);
 
-    return post ? <div>PostDetails</div> : <SpinLoader />;
+    return post ? (
+        <div>
+            <Post postData={post} />
+            <Comment postData={post} />
+        </div>
+    ) : (
+        <SpinLoader />
+    );
 };
 
 export default PostDetails;

@@ -3,10 +3,10 @@
 import { PostInfo } from "@/redux";
 import { Popover } from "antd";
 import Image from "next/image";
-import { RiMore2Fill } from "react-icons/ri";
+import Link from "next/link";
 import { BiComment, BiLike } from "react-icons/bi";
 import { BsBookmarkCheck } from "react-icons/bs";
-import Link from "next/link";
+import { RiMore2Fill } from "react-icons/ri";
 
 const Post = ({ postData }: { postData?: PostInfo }) => {
     return (
