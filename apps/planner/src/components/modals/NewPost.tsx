@@ -1,18 +1,17 @@
 "use client";
 
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import useAuth from "@/hooks/useAuth";
 import { CloseModalFunction } from "@/index";
 import { createPost } from "@/redux/post/post.slice";
-import { Dispatcher } from "@/redux/store";
 import { Input, Modal, Select } from "antd";
 import type { TextAreaRef } from "antd/es/input/TextArea";
 import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Button } from "ui";
 import ImageUploader from "../ImageUploader";
 
 const NewPost = ({ close, id }: { close: CloseModalFunction; id: string }) => {
-    const dispatch = useDispatch<Dispatcher>();
+    const dispatch = useAppDispatch();
     const [data, setData] = useState<{ value: number; label: string }[]>([]);
 
     useEffect(() => {

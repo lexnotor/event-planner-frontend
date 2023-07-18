@@ -1,11 +1,11 @@
 import { getDesigns } from "@/redux/design/design.slice";
-import { Dispatcher, RootState } from "@/redux/store";
 import { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch } from "./useAppDispatch";
+import { useAppSelector } from "./useAppSelector";
 
 const useDesign = () => {
-    const dispatch = useDispatch<Dispatcher>();
-    const designs = useSelector((state: RootState) => state.design);
+    const dispatch = useAppDispatch();
+    const designs = useAppSelector((state) => state.design);
 
     const isDesignLoading = useMemo(() => {
         return !!designs.thread.find(

@@ -1,14 +1,13 @@
 "use client";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import useAuth from "@/hooks/useAuth";
-import { Dispatcher } from "@/redux/store";
 import { logoutUser } from "@/redux/user/user.slice";
 import { Popover } from "antd";
 import Link from "next/link";
 import { RiMore2Fill } from "react-icons/ri";
-import { useDispatch } from "react-redux";
 
 const UserButton = () => {
-    const dispatch = useDispatch<Dispatcher>();
+    const dispatch = useAppDispatch();
     const { account } = useAuth();
 
     const logout = () => {

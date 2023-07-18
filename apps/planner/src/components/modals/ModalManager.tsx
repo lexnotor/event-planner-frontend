@@ -1,17 +1,17 @@
 "use client";
 
-import { ModalID, closeModal } from "@/redux/modals/modal.slice";
-import type { Dispatcher, RootState } from "@/redux/store";
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import AntConfig from "ui/AntConfig";
-import NewPost from "./NewPost";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { useAppSelector } from "@/hooks/useAppSelector";
 import StoreProvider from "@/redux/StoreProvider";
+import { ModalID, closeModal } from "@/redux/modals/modal.slice";
+import { useCallback } from "react";
+import AntConfig from "ui/AntConfig";
 import NewDesign from "./NewDesign";
+import NewPost from "./NewPost";
 
 const ModalManager = () => {
-    const modals = useSelector((state: RootState) => state.modalmanager);
-    const dispatch = useDispatch<Dispatcher>();
+    const modals = useAppSelector((state) => state.modalmanager);
+    const dispatch = useAppDispatch();
     const close = useCallback(() => dispatch(closeModal()), [dispatch]);
 
     return (
