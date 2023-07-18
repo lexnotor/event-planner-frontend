@@ -1,6 +1,6 @@
 import { AsyncThunkPayloadCreator } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
-import { ApiResponse, PostInfo } from "..";
+import { ApiResponse, CommentInfo, PostInfo } from "..";
 import { postUrl } from "../helper.api";
 import { RootState } from "../store";
 
@@ -34,7 +34,24 @@ const createPost: AsyncThunkPayloadCreator<PostInfo, PostInfo> = async (
     }
 };
 
+const getPostComment: AsyncThunkPayloadCreator<CommentInfo[], string> = async (
+    postId,
+    thunkAPI
+) => {
+    try {
+        const res: AxiosResponse<ApiResponse<CommentInfo[]>> = await axios.get(
+            postUrl.getPostComment(postId)
+        );
+        return res.data.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(
+            error.message || "FAIL_TO_LOAD_COMMENT"
+        );
+    }
+};
+
 export const postServices = {
     getPosts,
     createPost,
+    getPostComment,
 };

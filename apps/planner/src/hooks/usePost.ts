@@ -14,6 +14,7 @@ const usePost = (id?: string) => {
         return {
             isPostLoading,
             post: posts.listPost.find((post) => post.id == id),
+            comment: posts.comment[id],
         };
     return { posts, isPostLoading };
 };

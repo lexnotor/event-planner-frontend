@@ -1,12 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { postServices } from "./post.service";
-import type { PostInfo } from "..";
+import type { CommentInfo, PostInfo } from "..";
 
 type PostState = {
     listPost: PostInfo[];
+    comment: Record<string, CommentInfo[]>;
     thread: {
         id: string;
-        action: "LOAD_POST" | "DELETE_POST" | "CREATE_POST";
+        action:
+            | "LOAD_POST"
+            | "DELETE_POST"
+            | "CREATE_POST"
+            | "LOAD_POST_COMMENT";
         status: "LOADING" | "FULLFILLED" | "ERROR";
         message?: string;
     }[];
@@ -14,11 +19,16 @@ type PostState = {
 
 const initialState: PostState = {
     listPost: [],
+    comment: {},
     thread: [],
 };
 
 const getPosts = createAsyncThunk("post/getPosts", postServices.getPosts);
 const createPost = createAsyncThunk("post/createPost", postServices.createPost);
+const getPostComment = createAsyncThunk(
+    "post/getPostComment",
+    postServices.getPostComment
+);
 
 const postSlice = createSlice({
     initialState,
@@ -26,6 +36,7 @@ const postSlice = createSlice({
     reducers: {},
     extraReducers: (builder) =>
         builder
+            // getPost
             .addCase(getPosts.pending, (state, { meta }) => {
                 state.thread.push({
                     id: meta.requestId,
@@ -46,7 +57,7 @@ const postSlice = createSlice({
                 );
                 if (tasks) tasks.status = "ERROR";
             })
-
+            // createPost
             .addCase(createPost.pending, (state, { meta }) => {
                 state.thread.push({
                     id: meta.requestId,
@@ -66,12 +77,35 @@ const postSlice = createSlice({
                     (task) => task.id == meta.requestId
                 );
                 if (tasks) tasks.status = "ERROR";
+            })
+            // getPostComment
+            .addCase(getPostComment.pending, (state, { meta }) => {
+                state.thread.push({
+                    id: meta.requestId,
+                    action: "LOAD_POST_COMMENT",
+                    status: "LOADING",
+                });
+            })
+            .addCase(getPostComment.fulfilled, (state, { payload, meta }) => {
+                if (!state.comment[meta.arg]) state.comment[meta.arg] = [];
+                state.comment[meta.arg].push(...payload);
+
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "FULLFILLED";
+            })
+            .addCase(getPostComment.rejected, (state, { meta }) => {
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "ERROR";
             }),
 });
 
 // sync actions
 
 // async actions
-export { getPosts, createPost };
+export { getPosts, createPost, getPostComment };
 
 export default postSlice.reducer;
