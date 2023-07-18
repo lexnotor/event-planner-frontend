@@ -1,6 +1,7 @@
 "use client";
 import usePost from "@/hooks/usePost";
 import Post from "./Post";
+import { SpinLoader } from "ui";
 
 const PostList = () => {
     const { posts, isPostLoading } = usePost();
@@ -10,9 +11,7 @@ const PostList = () => {
             {posts.listPost.map((post) => (
                 <Post key={post.id} postData={post} />
             ))}
-            {isPostLoading && (
-                <span className="w-8 h-8 inline-block animate-spin border border-transparent border-t-neutral-900 rounded-full mx-auto" />
-            )}
+            {isPostLoading && <SpinLoader />}
         </div>
     );
 };

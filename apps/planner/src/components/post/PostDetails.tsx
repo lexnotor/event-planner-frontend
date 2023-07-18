@@ -11,16 +11,16 @@ const PostDetails = () => {
 
     const searchParams = useSearchParams();
 
-    const { post } = usePost(postId);
+    const { post, comments, isPostCommentLoading } = usePost(postId);
 
     useEffect(() => {
         setPostId(searchParams.get("post"));
     }, [searchParams]);
 
     return post ? (
-        <div>
+        <div className="w-full">
             <Post postData={post} />
-            <Comment postData={post} />
+            <Comment postComment={comments} isLoading={isPostCommentLoading} />
         </div>
     ) : (
         <SpinLoader />

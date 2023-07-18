@@ -1,11 +1,22 @@
 "use client";
-import { PostInfo } from "@/redux";
-import React from "react";
+import { CommentInfo } from "@/redux";
+import { SpinLoader } from "ui";
 
-const Comment = ({ postData }: { postData?: PostInfo }) => {
-    postData;
+const Comment = ({
+    postComment,
+    isLoading,
+}: {
+    postComment?: CommentInfo[];
+    isLoading: boolean;
+}) => {
+    postComment;
     return (
-        <ul className="py-4 px-8 bg-white rounded-xl flex flex-col gap-4 max-w-[38rem] w-full mx-auto border"></ul>
+        <ul className="py-4 px-8 bg-white rounded-xl flex flex-col gap-4 max-w-[38rem] w-full mx-auto border">
+            {postComment.map((comment) => (
+                <li key={comment.id}>{comment?.text}</li>
+            ))}
+            {isLoading && <SpinLoader />}
+        </ul>
     );
 };
 
