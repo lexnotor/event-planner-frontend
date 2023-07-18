@@ -9,7 +9,7 @@ const Checkbox = forwardRef(function Checkbox(
         id = "",
     }: {
         isChecked?: boolean;
-        toggler?: Function;
+        toggler?: () => any;
         id?: string;
     },
     ref: ForwardedRef<HTMLInputElement>
