@@ -1,6 +1,7 @@
 "use client";
 import useDesign from "@/hooks/useDesign";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const DesignList = () => {
@@ -17,9 +18,12 @@ const DesignList = () => {
                         height={300}
                         className="h-full w-full object-cover"
                     />
-                    <div className="absolute hidden w-full top-0 bottom-0 from-neutral-900 bg-opacity-25 bg-gradient-to-t from-5%  cursor-pointer transition-[display] duration-500 group-hover:flex flex-col justify-end text-white p-2">
+                    <Link
+                        href={`/design/p?design=${design.id}`}
+                        className="absolute hidden w-full top-0 bottom-0 from-neutral-900 bg-opacity-25 bg-gradient-to-t from-5%  cursor-pointer transition-[display] duration-500 group-hover:flex flex-col justify-end text-white p-2"
+                    >
                         <span>{design.text ?? ""}</span>
-                    </div>
+                    </Link>
                 </div>
             ))}
         </div>

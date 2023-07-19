@@ -13,7 +13,6 @@ const ScrollSaver = () => {
         if (scrollPos) window.scrollTo({ behavior: "smooth", top: +scrollPos });
 
         const savePosition = () => {
-            console.log(pathname + searchParams.toString());
             localStorage.setItem(
                 pathname + searchParams.toString(),
                 window.scrollY.toString()
