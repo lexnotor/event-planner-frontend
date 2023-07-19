@@ -61,6 +61,7 @@ const Post = ({ postData }: { postData?: PostInfo }) => {
                 <Link
                     className="flex gap-1 cursor-pointer hover:bg-neutral-200"
                     href={`/p?post=${postData.id}`}
+                    scroll={true}
                 >
                     <span className="text-xl">
                         <BiComment />
