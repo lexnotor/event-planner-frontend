@@ -1,7 +1,8 @@
 "use client";
 import usePost from "@/hooks/usePost";
-import Post from "./Post";
 import { SpinLoader } from "ui";
+import ScrollSaver from "../ScrollSaver";
+import Post from "./Post";
 
 const PostList = () => {
     const { posts, isPostLoading } = usePost();
@@ -12,6 +13,7 @@ const PostList = () => {
                 <Post key={post.id} postData={post} />
             ))}
             {isPostLoading && <SpinLoader />}
+            <ScrollSaver />
         </div>
     );
 };

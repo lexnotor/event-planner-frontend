@@ -1,9 +1,8 @@
-import MainSidebar from "@/components/sidebar/MainSidebar";
+import AuthManager from "@/components/auth/AuthManager";
 import ModalManager from "@/components/modals/ModalManager";
+import MainSidebar from "@/components/sidebar/MainSidebar";
 import StoreProvider from "@/redux/StoreProvider";
 import "../globals.css";
-import AuthManager from "@/components/auth/AuthManager";
-import ScrollSaver from "@/components/ScrollSaver";
 
 export const metadata = {
     title: "Create Next App",
@@ -28,7 +27,6 @@ export default function RootLayout({
                     <ModalManager />
                     <AuthManager />
                 </StoreProvider>
-                <ScrollSaver />
             </body>
         </html>
     );

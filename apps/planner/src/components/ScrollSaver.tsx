@@ -1,30 +1,33 @@
 "use client";
 
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const ScrollSaver = () => {
     const [pathname, searchParams] = [usePathname(), useSearchParams()];
+    const thisComp = useRef<HTMLSpanElement>(null);
 
     useEffect(() => {
+        const parent = thisComp.current.parentElement;
         const scrollPos = localStorage.getItem(
             pathname + searchParams.toString()
         );
-        if (scrollPos) window.scrollTo({ behavior: "smooth", top: +scrollPos });
+        if (scrollPos)
+            parent.scrollTo({ behavior: "instant", top: +scrollPos });
 
-        const savePosition = () => {
+        const savePosition = (e: Event) => {
             localStorage.setItem(
                 pathname + searchParams.toString(),
-                window.scrollY.toString()
+                (e.target as HTMLElement).scrollTop.toString()
             );
         };
-        window.addEventListener("scroll", savePosition);
 
-        return window.removeEventListener("scroll", savePosition);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        parent.addEventListener("scrollend", savePosition);
 
-    return <></>;
+        return () => parent.removeEventListener("scrollend", savePosition);
+    }, [thisComp, pathname, searchParams]);
+
+    return <span ref={thisComp} className="absolute" />;
 };
 
 export default ScrollSaver;

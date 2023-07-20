@@ -1,6 +1,7 @@
 import RightSidebar from "@/components/sidebar/RightSidebar";
 import PostList from "@/components/post/PostList";
 import StoreProvider from "@/redux/StoreProvider";
+import ScrollSaver from "@/components/ScrollSaver";
 
 export default function Home() {
     return (
@@ -13,6 +14,7 @@ export default function Home() {
                     <RightSidebar />
                 </StoreProvider>
             </aside>
+            <ScrollSaver />
         </section>
     );
 }
