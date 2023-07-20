@@ -25,6 +25,7 @@ const PostDetails = () => {
                 <Comment
                     postComment={comments}
                     isLoading={isPostCommentLoading}
+                    postId={postId}
                 />
             </div>
             <aside className="sticky shrink-0 top-0 w-72">

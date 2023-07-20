@@ -2,19 +2,30 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import useAuth from "@/hooks/useAuth";
 import { CommentInfo } from "@/redux";
+import { createPostComment } from "@/redux/post/post.slice";
+import { FormEvent, useRef } from "react";
 import { Button, SpinLoader } from "ui";
 
 const Comment = ({
     postComment,
     isLoading,
+    postId,
 }: {
     postComment?: CommentInfo[];
     isLoading: boolean;
+    postId?: string;
 }) => {
-    postComment;
     const { isLogin, account } = useAuth();
+
+    const textRef = useRef<HTMLTextAreaElement>(null);
     const dispatch = useAppDispatch();
-    const submitCommentHandle = () => {};
+    const submitCommentHandle = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const text = textRef.current.value;
+        dispatch(createPostComment({ text, postId })).then(
+            () => (textRef.current.value = "")
+        );
+    };
 
     return (
         <ul className="py-2 px-2 bg-white/50 rounded-lg flex flex-col gap-4 max-w-[38rem] w-full mx-auto border text-[85%]">
@@ -27,9 +38,10 @@ const Comment = ({
                             <span>{account.data.username}</span>
                         </div>
                     </div>
-                    <form className="flex gap-1">
+                    <form className="flex gap-1" onSubmit={submitCommentHandle}>
                         <textarea
                             rows={1}
+                            ref={textRef}
                             style={{
                                 resize: "none",
                             }}

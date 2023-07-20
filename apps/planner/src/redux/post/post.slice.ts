@@ -119,7 +119,7 @@ const postSlice = createSlice({
                 (state, { payload, meta }) => {
                     if (!state.comment[meta.arg.postId])
                         state.comment[meta.arg.postId] = [];
-                    state.comment[meta.arg.postId].push(payload);
+                    state.comment[meta.arg.postId].unshift(payload);
 
                     const tasks = state.thread.find(
                         (task) => task.id == meta.requestId
@@ -138,6 +138,6 @@ const postSlice = createSlice({
 // sync actions
 
 // async actions
-export { getPosts, createPost, getPostComment };
+export { getPosts, createPost, getPostComment, createPostComment };
 
 export default postSlice.reducer;
