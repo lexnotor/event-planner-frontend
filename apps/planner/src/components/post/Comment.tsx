@@ -1,4 +1,5 @@
 "use client";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import useAuth from "@/hooks/useAuth";
 import { CommentInfo } from "@/redux";
 import { Button, SpinLoader } from "ui";
@@ -12,6 +13,8 @@ const Comment = ({
 }) => {
     postComment;
     const { isLogin, account } = useAuth();
+    const dispatch = useAppDispatch();
+    const submitCommentHandle = () => {};
 
     return (
         <ul className="py-2 px-2 bg-white/50 rounded-lg flex flex-col gap-4 max-w-[38rem] w-full mx-auto border text-[85%]">

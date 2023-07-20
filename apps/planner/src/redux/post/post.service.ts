@@ -50,8 +50,32 @@ const getPostComment: AsyncThunkPayloadCreator<CommentInfo[], string> = async (
     }
 };
 
+type PCComment = AsyncThunkPayloadCreator<
+    CommentInfo,
+    CommentInfo & { postId: string }
+>;
+const createPostComment: PCComment = async (payload, thunkAPI) => {
+    const { user } = thunkAPI.getState() as RootState;
+    const { postId, date, public: status, text } = payload;
+    try {
+        const res: AxiosResponse<ApiResponse<CommentInfo>> = await axios.post(
+            postUrl.createPostComment(postId),
+            {
+                date,
+                public: status,
+                text,
+            },
+            { headers: { Authorization: `Bearer ${user.token}` } }
+        );
+        return res.data.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.message || "FAIL_TO_ADD_COMMENT");
+    }
+};
+
 export const postServices = {
     getPosts,
     createPost,
     getPostComment,
+    createPostComment,
 };
