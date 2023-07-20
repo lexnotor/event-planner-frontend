@@ -11,6 +11,7 @@ type PostState = {
             | "LOAD_POST"
             | "DELETE_POST"
             | "CREATE_POST"
+            | "CREATE_POST_COMMENT"
             | "LOAD_POST_COMMENT";
         status: "LOADING" | "FULLFILLED" | "ERROR";
         message?: string;
@@ -28,6 +29,10 @@ const createPost = createAsyncThunk("post/createPost", postServices.createPost);
 const getPostComment = createAsyncThunk(
     "post/getPostComment",
     postServices.getPostComment
+);
+const createPostComment = createAsyncThunk(
+    "post/createPostComment",
+    postServices.createPostComment
 );
 
 const postSlice = createSlice({
@@ -96,6 +101,33 @@ const postSlice = createSlice({
                 if (tasks) tasks.status = "FULLFILLED";
             })
             .addCase(getPostComment.rejected, (state, { meta }) => {
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "ERROR";
+            })
+            // createPostComment
+            .addCase(createPostComment.pending, (state, { meta }) => {
+                state.thread.push({
+                    id: meta.requestId,
+                    action: "CREATE_POST_COMMENT",
+                    status: "LOADING",
+                });
+            })
+            .addCase(
+                createPostComment.fulfilled,
+                (state, { payload, meta }) => {
+                    if (!state.comment[meta.arg.postId])
+                        state.comment[meta.arg.postId] = [];
+                    state.comment[meta.arg.postId].push(payload);
+
+                    const tasks = state.thread.find(
+                        (task) => task.id == meta.requestId
+                    );
+                    if (tasks) tasks.status = "FULLFILLED";
+                }
+            )
+            .addCase(createPostComment.rejected, (state, { meta }) => {
                 const tasks = state.thread.find(
                     (task) => task.id == meta.requestId
                 );
