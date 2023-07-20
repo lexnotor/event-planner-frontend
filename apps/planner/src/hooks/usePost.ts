@@ -32,7 +32,11 @@ const usePost = (id?: string) => {
         if (
             id &&
             !posts.comment[id] &&
-            !posts.thread.find((task) => task.action == "LOAD_POST_COMMENT")
+            !posts.thread.find(
+                (task) =>
+                    task.action == "LOAD_POST_COMMENT" &&
+                    task.status == "LOADING"
+            )
         ) {
             dispatch(getPostComment(id));
         }
