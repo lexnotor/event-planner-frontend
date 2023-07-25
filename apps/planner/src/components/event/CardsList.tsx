@@ -3,7 +3,11 @@ import EventCard from "./EventCard";
 
 const CardsList = () => {
     return (
-        <div className="w-full">
+        <div className="w-full flex gap-4 flex-wrap [&>*]:basis-auto">
+            <EventCard />
+            <EventCard />
+            <EventCard />
+            <EventCard />
             <EventCard />
         </div>
     );

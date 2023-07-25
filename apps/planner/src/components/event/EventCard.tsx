@@ -4,7 +4,7 @@ import { Button } from "ui";
 
 const EventCard = () => {
     return (
-        <article className="flex flex-col gap-2 max-w-xs w-full bg-white hover:bg-primary-200 duration-500 p-4 rounded-md border border-primary-500">
+        <article className="flex flex-col gap-2 max-w-xs w-full bg-white duration-500 transition-colors p-4 rounded-md border border-primary-500">
             <header>
                 <h3 className="font-medium text-lg">Concert du show</h3>
             </header>
