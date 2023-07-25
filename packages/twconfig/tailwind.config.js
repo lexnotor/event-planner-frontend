@@ -9,7 +9,28 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: "#263790",
+                primary: {
+                    100: undefined,
+                    200: "#F2F2F2",
+                    300: "#D9D9D9",
+                    400: undefined,
+                    500: "#AEAEAE",
+                    600: undefined,
+                    700: "#5F5F5F",
+                    800: undefined,
+                    900: "#2B2B2B",
+                },
+                secondary: {
+                    100: undefined,
+                    200: undefined,
+                    300: undefined,
+                    400: undefined,
+                    500: undefined,
+                    600: "#263790",
+                    700: undefined,
+                    800: undefined,
+                    900: undefined,
+                },
             },
         },
     },
