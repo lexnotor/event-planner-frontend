@@ -33,6 +33,8 @@ const postUrl = {
     getPosts: `${baseUrl}/post`,
     getOnePost: `${baseUrl}/post`,
     createPost: `${baseUrl}/post`,
+    getPostComment: (postId: string) => `${baseUrl}/post/${postId}/comment`,
+    createPostComment: (postId: string) => `${baseUrl}/post/${postId}/comment`,
 };
 
 export { apiFetch, authUrl, baseUrl, userUrl, postUrl, designUrl };

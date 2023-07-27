@@ -1,16 +1,15 @@
 "use client";
 import useToggle from "@/hooks/toggle";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import useAuth from "@/hooks/useAuth";
-import { Dispatcher } from "@/redux/store";
 import { loginUser } from "@/redux/user/user.slice";
 import Link from "next/link";
-import { FormEventHandler, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import Checkbox from "ui/Checkbox";
 import { useRouter } from "next/navigation";
+import { FormEventHandler, useEffect, useRef } from "react";
+import Checkbox from "ui/Checkbox";
 
 const LoginForm = () => {
-    const dispatch = useDispatch<Dispatcher>();
+    const dispatch = useAppDispatch();
 
     // Form data
     const [longSession, toggleLongSession] = useToggle(true);

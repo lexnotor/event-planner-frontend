@@ -1,6 +1,7 @@
-import * as React from "react";
+// import * as React from "react";
 // component exports
-export * from "./Button";
-export * from "./Header";
-export * from "./AntConfig";
-export * from "./Checkbox";
+export { Button } from "./Button";
+export { Header } from "./Header";
+export { default as AntConfig } from "./AntConfig";
+export { default as Checkbox } from "./Checkbox";
+export { SpinLoader } from "./SpinLoader";

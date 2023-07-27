@@ -23,8 +23,8 @@ const Navigation = () => {
                         key={i}
                         style={{ textAlign: "start" }}
                         className={`p-0 ${
-                            isActive ? "bg-purple-300" : "bg-purple-200"
-                        } hover:bg-purple-300 transition-colors !duration-500 rounded-r-full rounded-l-full`}
+                            isActive ? "bg-neutral-600" : "bg-neutral-400"
+                        } hover:bg-neutral-600 transition-colors !duration-500 rounded-r-full rounded-l-full text-white`}
                     >
                         <Link
                             href={link.path}

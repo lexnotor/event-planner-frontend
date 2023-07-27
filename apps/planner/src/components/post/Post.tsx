@@ -3,26 +3,30 @@
 import { PostInfo } from "@/redux";
 import { Popover } from "antd";
 import Image from "next/image";
-import { RiMore2Fill } from "react-icons/ri";
-import { BiLike } from "react-icons/bi";
+import Link from "next/link";
+import { BiComment, BiLike } from "react-icons/bi";
 import { BsBookmarkCheck } from "react-icons/bs";
+import { RiMore2Fill } from "react-icons/ri";
 
 const Post = ({ postData }: { postData?: PostInfo }) => {
     return (
-        <div className="py-4 px-8 bg-white rounded-xl flex flex-col gap-4 max-w-[35rem] w-full mx-auto border">
+        <div className="py-4 px-8 bg-white rounded-xl flex flex-col gap-4 max-w-[38rem] w-full mx-auto border">
             <header className="flex gap-2 justify-between items-center">
-                <div className="w-10 h-10 rounded-full bg-purple-500" />
+                <div className="w-10 h-10 rounded-full bg-neutral-400 cursor-pointer" />
                 <div className="">
-                    <p className="font-semibold">{postData?.author}</p>
+                    <p className="font-semibold cursor-pointer">
+                        {postData?.author}
+                    </p>
                     <p className="font-light text-neutral-700 text-xs">
                         {new Date(postData.date).toDateString()}
                     </p>
                 </div>
                 <Popover
+                    overlayInnerStyle={{ padding: 0, overflow: "hidden" }}
                     trigger={"click"}
                     arrow={false}
                     content={
-                        <ul className="flex flex-col w-40 [&>li:hover]:bg-slate-50 [&>li]:py-2 [&>li]:cursor-pointer">
+                        <ul className="flex flex-col w-40 [&>li:hover]:bg-slate-50 [&>li]:py-2 [&>li]:px-4 [&>li]:cursor-pointer">
                             <li>Enregistrer</li>
                             <li>Contacter</li>
                             <li>Prestataire</li>
@@ -53,13 +57,17 @@ const Post = ({ postData }: { postData?: PostInfo }) => {
                     <span className="basis-1/2 h-44 bg-neutral-300 rounded-xl"></span> */}
                 </div>
             </main>
-            <footer className="border-t min-h-[2rem] flex [&>div]:basis-1/4 [&>div]:justify-center [&>div]:duration-500 items-end">
-                <div className="flex gap-1 cursor-pointer hover:bg-neutral-200">
+            <footer className="border-t min-h-[2rem] flex [&>*]:basis-1/4 [&>*]:justify-center [&>*]:duration-500 items-end">
+                <Link
+                    className="flex gap-1 cursor-pointer hover:bg-neutral-200"
+                    href={`/p?post=${postData.id}`}
+                    scroll={true}
+                >
                     <span className="text-xl">
-                        <BiLike />
+                        <BiComment />
                     </span>
                     <span>2k</span>
-                </div>
+                </Link>
                 <div className="flex gap-1 cursor-pointer hover:bg-neutral-200">
                     <span className="text-xl">
                         <BiLike />

@@ -1,12 +1,11 @@
 "use client";
 
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { ModalID, openModal } from "@/redux/modals/modal.slice";
-import { Dispatcher } from "@/redux/store";
-import { useDispatch } from "react-redux";
 import { Button } from "ui";
 
 const RightSidebar = () => {
-    const dispatch = useDispatch<Dispatcher>();
+    const dispatch = useAppDispatch();
 
     return (
         <div className="flex flex-col gap-6">

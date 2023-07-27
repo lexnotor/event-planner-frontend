@@ -1,12 +1,12 @@
 "use client";
-import { Dispatcher, RootState } from "@/redux/store";
 import { getMe, loadUserData, loadUserToken } from "@/redux/user/user.slice";
 import { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch } from "./useAppDispatch";
+import { useAppSelector } from "./useAppSelector";
 
 const useAuth = () => {
-    const dispatch = useDispatch<Dispatcher>();
-    const account = useSelector((state: RootState) => state.user);
+    const dispatch = useAppDispatch();
+    const account = useAppSelector((state) => state.user);
 
     const isPendindLogin = useMemo(() => {
         return !!account.thread.find(
@@ -20,6 +20,10 @@ const useAuth = () => {
         );
     }, [account.thread]);
 
+    const isLogin = useMemo(() => {
+        return !!account.data;
+    }, [account.data]);
+
     useEffect(() => {
         const userData = localStorage.getItem("session_data");
         if (userData && !account.data && account.token)
@@ -32,7 +36,7 @@ const useAuth = () => {
         if (!account.token && token) dispatch(loadUserToken(token));
     }, [dispatch, account.token]);
 
-    return { account, isPendindLogin, isPendingSignup };
+    return { account, isPendindLogin, isPendingSignup, isLogin };
 };
 
 export default useAuth;

@@ -1,14 +1,13 @@
 "use client";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import useAuth from "@/hooks/useAuth";
-import { Dispatcher } from "@/redux/store";
 import { logoutUser } from "@/redux/user/user.slice";
 import { Popover } from "antd";
 import Link from "next/link";
 import { RiMore2Fill } from "react-icons/ri";
-import { useDispatch } from "react-redux";
 
 const UserButton = () => {
-    const dispatch = useDispatch<Dispatcher>();
+    const dispatch = useAppDispatch();
     const { account } = useAuth();
 
     const logout = () => {
@@ -27,7 +26,7 @@ const UserButton = () => {
 
     return account.data ? (
         <div className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-full bg-purple-400"></div>
+            <div className="w-9 h-9 rounded-full bg-neutral-600"></div>
             <div className="flex flex-col justify-center gap-0 max-w-[calc(100%-2.5rem-1rem-1rem)]">
                 <span>{`${account.data?.firstname} ${account.data?.lastname}`}</span>
                 <span
@@ -38,23 +37,23 @@ const UserButton = () => {
                 </span>
             </div>
             <Popover
-                overlayInnerStyle={{ padding: "0" }}
+                overlayInnerStyle={{ padding: "0", overflow: "hidden" }}
                 trigger={["click"]}
                 arrow={false}
                 placement="topLeft"
                 destroyTooltipOnHide
                 color="green-inverse"
                 content={
-                    <ul className="[&>li]:py-1 [&>li]:px-4 [&>li]:duration-300 flex flex-col gap-2">
+                    <ul className="[&>li]:py-2 [&>li]:px-8 [&>li]:duration-300 flex flex-col gap-0">
                         <li
                             onClick={logout}
-                            className="cursor-pointer hover:text-purple-400 hover:bg-purple-200"
+                            className="cursor-pointer hover:text-white hover:bg-neutral-600"
                         >
                             Logout
                         </li>
                         <li
                             onClick={logout}
-                            className="cursor-pointer hover:text-purple-400 hover:bg-purple-200"
+                            className="cursor-pointer hover:text-white hover:bg-neutral-600"
                         >
                             Logout
                         </li>

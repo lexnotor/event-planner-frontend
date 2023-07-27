@@ -1,13 +1,12 @@
 "use client";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { CloseModalFunction } from "@/index";
+import { createDesign } from "@/redux/design/design.slice";
 import { Input, Modal } from "antd";
 import { TextAreaRef } from "antd/es/input/TextArea";
 import { useRef } from "react";
 import { Button } from "ui";
 import ImageUploader from "../ImageUploader";
-import { useDispatch } from "react-redux";
-import { Dispatcher } from "@/redux/store";
-import { createDesign } from "@/redux/design/design.slice";
 
 const NewDesign = ({
     close,
@@ -16,7 +15,7 @@ const NewDesign = ({
     close: CloseModalFunction;
     id: string;
 }) => {
-    const dispatch = useDispatch<Dispatcher>();
+    const dispatch = useAppDispatch();
 
     const designTextRef = useRef<TextAreaRef>(null);
     const designImageRef = useRef<{ file?: File }>({});

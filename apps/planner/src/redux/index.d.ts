@@ -106,3 +106,29 @@ export interface DesignPhotoInfo extends DefaultInfo {
     design?: DesignInfo;
     photo?: PhotoInfo;
 }
+
+export interface CommentInfo extends DefaultInfo {
+    text?: string;
+    date?: Date;
+    public?: boolean;
+    user?: UserInfo;
+}
+
+export interface EventInfo extends DefaultInfo {
+    public?: boolean;
+    price?: string;
+    title?: string;
+    data?: object;
+    text?: string;
+    comments?: string;
+    likes?: number;
+    tags?: string;
+    type?: string;
+    location?: string;
+    user?: UserInfo;
+}
+
+export interface EventPhotoInfo extends DefaultInfo {
+    event: EventInfo;
+    photo: PhotoInfo;
+}
