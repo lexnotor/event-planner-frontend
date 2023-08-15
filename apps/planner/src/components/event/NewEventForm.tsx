@@ -1,6 +1,9 @@
+"use client";
 import React from "react";
+import { useNewEventContext } from "./context/NewEventContext";
 
 const NewEventForm = () => {
+    const context = useNewEventContext();
     return (
         <form className="flex flex-col gap-4">
             <table>
@@ -11,8 +14,10 @@ const NewEventForm = () => {
                         </td>
                         <td>
                             <input
+                                ref={context.titleRef}
+                                placeholder="Célebration anniversaire de mariage"
                                 type="text"
-                                className="w-[30rem] border rounded-l-full rounded-r-full border-primary-900 bg-primary-200 px-4 py-2 focus:outline-none bg-transparent"
+                                className="bg-white w-[30rem] border rounded-l-full rounded-r-full border-primary-900  px-4 py-2 focus:outline-none bg-transparent"
                             />
                         </td>
                     </tr>
@@ -23,9 +28,10 @@ const NewEventForm = () => {
                         </td>
                         <td>
                             <input
+                                ref={context.LocationRef}
                                 placeholder="Goma, RDC"
                                 type="text"
-                                className="w-[30rem] border rounded-l-full rounded-r-full border-primary-900 bg-primary-200 px-4 py-2 focus:outline-none bg-transparent"
+                                className="bg-white w-[30rem] border rounded-l-full rounded-r-full border-primary-900  px-4 py-2 focus:outline-none bg-transparent"
                             />
                         </td>
                     </tr>
@@ -35,8 +41,9 @@ const NewEventForm = () => {
                         </td>
                         <td>
                             <input
+                                ref={context.dateRef}
                                 type="date"
-                                className="w-[30rem] border rounded-l-full rounded-r-full border-primary-900 bg-primary-200 px-4 py-2 focus:outline-none bg-transparent"
+                                className="bg-white w-[30rem] border rounded-l-full rounded-r-full border-primary-900  px-4 py-2 focus:outline-none bg-transparent"
                             />
                         </td>
                     </tr>
@@ -46,9 +53,10 @@ const NewEventForm = () => {
                         </td>
                         <td>
                             <textarea
+                                ref={context.descriptionRef}
                                 rows={4}
                                 placeholder="Jubiler d'or du mariage couple x-y"
-                                className="resize-none w-[30rem] border rounded-2xl border-primary-900 bg-primary-200 px-4 py-2 focus:outline-none bg-transparent"
+                                className="bg-white resize-none w-[30rem] border rounded-2xl border-primary-900  px-4 py-2 focus:outline-none bg-transparent"
                             />
                         </td>
                     </tr>
