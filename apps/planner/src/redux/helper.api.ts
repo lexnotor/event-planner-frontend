@@ -37,4 +37,12 @@ const postUrl = {
     createPostComment: (postId: string) => `${baseUrl}/post/${postId}/comment`,
 };
 
-export { apiFetch, authUrl, baseUrl, userUrl, postUrl, designUrl };
+const eventUrl = {
+    getEvents: `${baseUrl}/event/find`,
+    createEvent: `${baseUrl}/event/new`,
+    updateEvent: (eventId: string) =>
+        `${baseUrl}/event/update?event=${eventId}`,
+    deleteEvent: (eventId: string) => `${baseUrl}/event/${eventId}`,
+};
+
+export { apiFetch, authUrl, baseUrl, userUrl, postUrl, designUrl, eventUrl };

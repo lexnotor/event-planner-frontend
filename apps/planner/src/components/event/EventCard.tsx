@@ -9,15 +9,16 @@ const EventCard = () => {
                 <h3 className="font-medium text-lg">Concert du show</h3>
             </header>
             <hr />
-            <section>
+            <section className="">
                 <span className="text-xs font-thin text-primary-700">
                     25 Juillet 2023 | 18h00 - 22h30
                 </span>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
+                <p className="overflow-ellipsis">
+                    {`Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
                     aspernatur, non aliquid voluptas aut maxime magni vitae
                     velit perferendis, assumenda tenetur similique odio tempore
-                    modi ut officia, numquam rem animi!
+                    modi ut officia, numquam rem animi!`.substring(0, 250) +
+                        "..."}
                 </p>
             </section>
             <hr />
