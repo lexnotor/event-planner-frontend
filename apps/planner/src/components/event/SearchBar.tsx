@@ -1,6 +1,8 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { Button } from "ui";
 
 const SearchBar = () => {
     const submitHandle: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -9,7 +11,7 @@ const SearchBar = () => {
 
     return (
         <div className="w-full">
-            <div>
+            <div className="flex justify-between">
                 <form
                     onSubmit={submitHandle}
                     className="w-80 bg-white border overflow-hidden rounded-r-full rounded-l-full"
@@ -25,6 +27,11 @@ const SearchBar = () => {
                         />
                     </label>
                 </form>
+                <div>
+                    <Link href="/event/n">
+                        <Button>Planifier</Button>
+                    </Link>
+                </div>
             </div>
         </div>
     );

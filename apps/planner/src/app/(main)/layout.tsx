@@ -22,7 +22,9 @@ export default function RootLayout({
                     <div className="w-72 overflow-y-auto shrink-0">
                         <MainSidebar />
                     </div>
-                    <main className="grow">{children}</main>
+                    <main className="grow max-h-full overflow-y-auto">
+                        {children}
+                    </main>
                 </div>
                 <StoreProvider>
                     <ModalManager />
