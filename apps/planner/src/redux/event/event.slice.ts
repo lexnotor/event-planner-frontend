@@ -1,16 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { EventInfo } from "..";
+import { EventInfo, GigInfo } from "..";
 import { EventServices } from "./event.service";
 
 interface EventState {
     listeEvents: EventInfo[];
+    listeGigs: GigInfo[];
     thread: {
         id: string;
         action:
             | "LOAD_EVENTS"
             | "DELETE_EVENT"
             | "UPDATE_EVENT"
-            | "CREATE_EVENT";
+            | "CREATE_EVENT"
+            // GIG
+            | "UPDATE_EVENT_GIG"
+            | "REMOVE_EVENT_GIG"
+            | "GET_EVENT_GIG"
+            | "ADD_GIG_TO_EVENT";
         status: "LOADING" | "FULLFILLED" | "ERROR";
         message?: string;
     }[];
@@ -18,6 +24,7 @@ interface EventState {
 
 const initialState: EventState = {
     listeEvents: [],
+    listeGigs: [],
     thread: [],
 };
 
@@ -33,6 +40,24 @@ const deleteEvent = createAsyncThunk(
 const updateEvent = createAsyncThunk(
     "event/updateEvent",
     EventServices.updateEvent
+);
+
+// -------- GIG ---------
+const addGigToEvent = createAsyncThunk(
+    "event/addGigToEvent",
+    EventServices.addGigToEvent
+);
+const updateGigEvent = createAsyncThunk(
+    "event/updateGigEvent",
+    EventServices.updateGigEvent
+);
+const removeGigFromEvent = createAsyncThunk(
+    "event/removeGigFromEvent",
+    EventServices.removeGigFromEvent
+);
+const getEventGigs = createAsyncThunk(
+    "event/getEventGigs",
+    EventServices.getEventGigs
 );
 
 const EventSlice = createSlice({
@@ -135,6 +160,104 @@ const EventSlice = createSlice({
                     (task) => task.id == meta.requestId
                 );
                 if (tasks) tasks.status = "ERROR";
+            })
+            // addGigToEvent
+            .addCase(addGigToEvent.pending, (state, { meta }) => {
+                state.thread.push({
+                    id: meta.requestId,
+                    action: "ADD_GIG_TO_EVENT",
+                    status: "LOADING",
+                });
+            })
+            .addCase(addGigToEvent.fulfilled, (state, { payload, meta }) => {
+                state.listeGigs.unshift(payload);
+
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "FULLFILLED";
+            })
+            .addCase(addGigToEvent.rejected, (state, { meta }) => {
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "ERROR";
+            })
+            // updateGigEvent
+            .addCase(updateGigEvent.pending, (state, { meta }) => {
+                state.thread.push({
+                    id: meta.requestId,
+                    action: "UPDATE_EVENT_GIG",
+                    status: "LOADING",
+                });
+            })
+            .addCase(updateGigEvent.fulfilled, (state, { payload, meta }) => {
+                const index = state.listeGigs.findIndex(
+                    (item) => item.id == payload?.id
+                );
+                if (index != -1) state.listeGigs.splice(index, 1, payload);
+                else state.listeGigs.unshift(payload);
+
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "FULLFILLED";
+            })
+            .addCase(updateGigEvent.rejected, (state, { meta }) => {
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "ERROR";
+            })
+            // removeGigFromEvent
+            .addCase(removeGigFromEvent.pending, (state, { meta }) => {
+                state.thread.push({
+                    id: meta.requestId,
+                    action: "REMOVE_EVENT_GIG",
+                    status: "LOADING",
+                });
+            })
+            .addCase(
+                removeGigFromEvent.fulfilled,
+                (state, { payload, meta }) => {
+                    const index = state.listeGigs.findIndex(
+                        (item) => item.id == payload
+                    );
+                    if (index != -1) state.listeGigs.splice(index, 1);
+
+                    const tasks = state.thread.find(
+                        (task) => task.id == meta.requestId
+                    );
+                    if (tasks) tasks.status = "FULLFILLED";
+                }
+            )
+            .addCase(removeGigFromEvent.rejected, (state, { meta }) => {
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "ERROR";
+            })
+            // getEventGigs
+            .addCase(getEventGigs.pending, (state, { meta }) => {
+                state.thread.push({
+                    id: meta.requestId,
+                    action: "GET_EVENT_GIG",
+                    status: "LOADING",
+                });
+            })
+            .addCase(getEventGigs.fulfilled, (state, { payload, meta }) => {
+                state.listeGigs.push(...payload);
+
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "FULLFILLED";
+            })
+            .addCase(getEventGigs.rejected, (state, { meta }) => {
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "ERROR";
             }),
 });
 
@@ -142,6 +265,15 @@ const EventSlice = createSlice({
 export default EventSlice.reducer;
 
 // async
-export { getEvents, createEvent, deleteEvent, updateEvent };
+export {
+    addGigToEvent,
+    createEvent,
+    deleteEvent,
+    getEventGigs,
+    getEvents,
+    removeGigFromEvent,
+    updateEvent,
+    updateGigEvent,
+};
 
 // sync
