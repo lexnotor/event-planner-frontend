@@ -45,10 +45,12 @@ const eventUrl = {
         `${baseUrl}/event/update?event=${eventId}`,
     deleteEvent: (eventId: string) => `${baseUrl}/event/${eventId}`,
     // gig
-    addGigToEvent: `${baseUrl}/gig/add`,
-    getEventGigs: (eventId: string) => `${baseUrl}/gig?eventId=${eventId}`,
-    updateGigEvent: (eventId: string) => `${baseUrl}/gig/update/${eventId}`,
-    delteGigFromEvent: (eventId: string) => `${baseUrl}/gig/${eventId}`,
+    addGigToEvent: `${baseUrl}/event/gig/add`,
+    getEventGigs: (eventId: string) =>
+        `${baseUrl}/event/gig?eventId=${eventId}`,
+    updateGigEvent: (eventId: string) =>
+        `${baseUrl}/event/gig/update/${eventId}`,
+    delteGigFromEvent: (eventId: string) => `${baseUrl}/event/gig/${eventId}`,
 };
 
 export { apiFetch, authUrl, baseUrl, userUrl, postUrl, designUrl, eventUrl };

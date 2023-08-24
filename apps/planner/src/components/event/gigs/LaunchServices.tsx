@@ -27,6 +27,9 @@ const LaunchServices = ({ id }: { id: string }) => {
                                     type="text"
                                     placeholder="PREMIERE DAME"
                                     defaultValue={current?.supplier ?? ""}
+                                    onChange={(e) =>
+                                        (current.supplier = e.target.value)
+                                    }
                                     className="grow border rounded-l-full rounded-r-full border-primary-900 bg-primary-200 px-4 py-2 focus:outline-none bg-transparent"
                                 />
                                 <span
@@ -46,6 +49,9 @@ const LaunchServices = ({ id }: { id: string }) => {
                                     type="text"
                                     placeholder="260 Invités; 260 + 20 plats"
                                     defaultValue={current?.details ?? ""}
+                                    onChange={(e) =>
+                                        (current.details = e.target.value)
+                                    }
                                     className="grow border rounded-l-full rounded-r-full border-primary-900 bg-primary-200 px-4 py-2 focus:outline-none bg-transparent"
                                 />
                             </td>
