@@ -1,5 +1,6 @@
 "use client";
 import { EventInfo } from "@/redux";
+import Link from "next/link";
 import { BiCurrentLocation } from "react-icons/bi";
 import { Button } from "ui";
 
@@ -33,9 +34,12 @@ const EventCard = ({ event }: { event?: EventInfo }) => {
                     </span>
                 </div>
                 <div>
-                    <Button size="small" style={{ fontSize: "80%" }}>
-                        Plus
-                    </Button>
+                    <Link href={`/event/p?id=${event?.id}`}>
+                        {" "}
+                        <Button size="small" style={{ fontSize: "80%" }}>
+                            Plus
+                        </Button>
+                    </Link>
                 </div>
             </footer>
         </article>

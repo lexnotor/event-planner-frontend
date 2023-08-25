@@ -30,6 +30,28 @@ const getEvents: AsyncThunkPayloadCreator<EventInfo[]> = async (
     }
 };
 
+const getOneEvent: AsyncThunkPayloadCreator<EventInfo, string> = async (
+    id,
+    thunkAPI
+) => {
+    const {
+        user: { token },
+    } = thunkAPI.getState() as RootState;
+
+    try {
+        const res: AxiosResponse<ApiResponse<EventInfo>> = await axios.get(
+            eventUrl.getOneEvent(id),
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        return res.data.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(
+            error.message ?? "FAIL_TO_GET_ONE_EVENT"
+        );
+    }
+};
+
 const createEvent: AsyncThunkPayloadCreator<
     EventInfo,
     CreateEventType
@@ -192,6 +214,7 @@ const getEventGigs: AsyncThunkPayloadCreator<EventGigInfo[], string> = async (
 
 export const EventServices = {
     getEvents,
+    getOneEvent,
     createEvent,
     updateEvent,
     deleteEvent,

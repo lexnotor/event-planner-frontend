@@ -9,6 +9,7 @@ interface EventState {
         id: string;
         action:
             | "LOAD_EVENTS"
+            | "GET_ONE_EVENT"
             | "DELETE_EVENT"
             | "UPDATE_EVENT"
             | "CREATE_EVENT"
@@ -29,14 +30,22 @@ const initialState: EventState = {
 };
 
 const getEvents = createAsyncThunk("event/getEvents", EventServices.getEvents);
+
+const getOneEvent = createAsyncThunk(
+    "event/getOneEvent",
+    EventServices.getOneEvent
+);
+
 const createEvent = createAsyncThunk(
     "event/createEvent",
     EventServices.createEvent
 );
+
 const deleteEvent = createAsyncThunk(
     "event/deleteEvent",
     EventServices.deleteEvent
 );
+
 const updateEvent = createAsyncThunk(
     "event/updateEvent",
     EventServices.updateEvent
@@ -83,6 +92,33 @@ const EventSlice = createSlice({
                 if (tasks) tasks.status = "FULLFILLED";
             })
             .addCase(getEvents.rejected, (state, { meta }) => {
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "ERROR";
+            })
+            // getOneEvent
+            .addCase(getOneEvent.pending, (state, { meta }) => {
+                state.thread.push({
+                    id: meta.requestId,
+                    action: "GET_ONE_EVENT",
+                    status: "LOADING",
+                });
+            })
+            .addCase(getOneEvent.fulfilled, (state, { payload, meta }) => {
+                const index = state.listeEvents.findIndex(
+                    (event) => event.id == payload.id
+                );
+
+                if (index != -1) state.listeEvents.unshift(payload);
+                else state.listeEvents.splice(index, 1, payload);
+
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "FULLFILLED";
+            })
+            .addCase(getOneEvent.rejected, (state, { meta }) => {
                 const tasks = state.thread.find(
                     (task) => task.id == meta.requestId
                 );
@@ -271,6 +307,7 @@ export {
     deleteEvent,
     getEventGigs,
     getEvents,
+    getOneEvent,
     removeGigFromEvent,
     updateEvent,
     updateGigEvent,

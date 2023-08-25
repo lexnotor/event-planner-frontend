@@ -40,6 +40,7 @@ const postUrl = {
 const eventUrl = {
     // event
     getEvents: `${baseUrl}/event/find`,
+    getOneEvent: (eventId: string) => `${baseUrl}/event/find?id=${eventId}`,
     createEvent: `${baseUrl}/event/new`,
     updateEvent: (eventId: string) =>
         `${baseUrl}/event/update?event=${eventId}`,
