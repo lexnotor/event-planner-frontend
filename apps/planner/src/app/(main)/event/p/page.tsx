@@ -16,13 +16,13 @@ const Page = () => {
 
     return (
         <div className="p-4 min-h-full">
-            <div className="flex gap-4 min-h-full">
+            <div className="flex gap-4 min-h-full relative">
                 <div className="grow">
                     <StoreProvider>
                         <EventDetails id={id} />
                     </StoreProvider>
                 </div>
-                <div className="sticky shrink-0 top-0 w-72">
+                <div className="sticky shrink-0 top-4 w-72">
                     <StoreProvider>
                         <SideBarListEvent />
                     </StoreProvider>

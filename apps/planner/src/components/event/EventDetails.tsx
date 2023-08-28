@@ -3,15 +3,18 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import useEvent from "@/hooks/useEvent";
 import useEventGig from "@/hooks/useEventGig";
 import { getOneEvent } from "@/redux/event/event.slice";
-import { Divider, Tag } from "antd";
+import { Divider } from "antd";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { BiCurrentLocation } from "react-icons/bi";
 import { BsCalendar3 } from "react-icons/bs";
 import { Button } from "ui";
+import { GigDetails } from "./gigs";
 
 const EventDetails = ({ id }: { id?: string }) => {
+    const router = useRouter();
     const dispatch = useAppDispatch();
     const { listeEvents } = useEvent();
     const { eventGig } = useEventGig(id);
@@ -39,7 +42,9 @@ const EventDetails = ({ id }: { id?: string }) => {
             <h2 className="mb-4 flex justify-between">
                 <span className="font-bold text-xl mb-4">{event?.title}</span>
                 <span>
-                    <Button size="small">Retour</Button>
+                    <Button size="small" onClick={() => router.back()}>
+                        Retour
+                    </Button>
                 </span>
             </h2>
 
@@ -47,7 +52,7 @@ const EventDetails = ({ id }: { id?: string }) => {
                 Détail
             </Divider>
             <section className="grid grid-cols-3 gap-4">
-                <p className="bg-white p-4 rounded-xl relative">
+                <p className="bg-white p-4 rounded-xl relative  border border-yellow-700">
                     <span className="absolute top-1 right-1 text-lg hover:text-green-500 duration-500 cursor-pointer">
                         <AiFillEdit />
                     </span>
@@ -56,7 +61,7 @@ const EventDetails = ({ id }: { id?: string }) => {
                     </span>
                 </p>
 
-                <div className="p-4 rounded-xl bg-green-100 border border-green-700">
+                <div className="p-4 rounded-xl bg-white border border-green-700">
                     <div className="flex gap-2 items-center text-primary-700">
                         <BiCurrentLocation
                             style={{ verticalAlign: "middle" }}
@@ -67,7 +72,7 @@ const EventDetails = ({ id }: { id?: string }) => {
                     </div>
                     <p className="text-right">Lieu</p>
                 </div>
-                <div className="p-4 rounded-xl bg-yellow-100 border border-yellow-700">
+                <div className="p-4 rounded-xl bg-white border border-yellow-700">
                     <div className="flex gap-2 items-center text-primary-700">
                         <BsCalendar3 style={{ verticalAlign: "middle" }} />
                         <span className="text-lg font-bold text-primary-700">
@@ -91,7 +96,11 @@ const EventDetails = ({ id }: { id?: string }) => {
                 Services ({eventGig.length})
             </Divider>
 
-            <div></div>
+            <section className="grid grid-cols-2 gap-4">
+                {eventGig.map((item) => (
+                    <GigDetails key={item?.id} eventGig={item} />
+                ))}
+            </section>
         </div>
     );
 };
