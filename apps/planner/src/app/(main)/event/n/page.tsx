@@ -3,6 +3,7 @@ import ListeServices from "@/components/event/ListeServices";
 import NewEventForm from "@/components/event/NewEventForm";
 import SubmitNewEvent from "@/components/event/SubmitNewEvent";
 import NewEventContext from "@/components/event/context/NewEventContext";
+import StoreProvider from "@/redux/StoreProvider";
 
 const Page = () => {
     return (
@@ -20,7 +21,9 @@ const Page = () => {
                 </div>
                 <div className="text-right rounded-lg p-4 sticky bottom-0 backdrop-blur-lg">
                     <hr className="border-primary-700 my-2" />
-                    <SubmitNewEvent />
+                    <StoreProvider>
+                        <SubmitNewEvent />
+                    </StoreProvider>
                 </div>
             </NewEventContext>
         </div>

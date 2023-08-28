@@ -10,7 +10,9 @@ const Page = () => {
                 <SearchBar />
             </StoreProvider>
 
-            <CardsList />
+            <StoreProvider>
+                <CardsList />
+            </StoreProvider>
         </section>
     );
 };

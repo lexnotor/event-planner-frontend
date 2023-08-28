@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { LaunchServices } from "./services";
+import { LaunchServices } from "./gigs";
 import { useNewEventContext } from "./context/NewEventContext";
 
 const ListeServices = () => {
