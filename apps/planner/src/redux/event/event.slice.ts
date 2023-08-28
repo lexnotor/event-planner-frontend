@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { EventInfo, GigInfo } from "..";
+import { EventGigInfo, EventInfo } from "..";
 import { EventServices } from "./event.service";
 
 interface EventState {
     listeEvents: EventInfo[];
-    listeGigs: GigInfo[];
+    listeGigs: EventGigInfo[];
     thread: {
         id: string;
         action:
@@ -84,7 +84,7 @@ const EventSlice = createSlice({
                 });
             })
             .addCase(getEvents.fulfilled, (state, { payload, meta }) => {
-                state.listeEvents.push(...payload);
+                state.listeEvents = payload;
 
                 const tasks = state.thread.find(
                     (task) => task.id == meta.requestId
@@ -110,7 +110,7 @@ const EventSlice = createSlice({
                     (event) => event.id == payload.id
                 );
 
-                if (index != -1) state.listeEvents.unshift(payload);
+                if (index == -1) state.listeEvents.unshift(payload);
                 else state.listeEvents.splice(index, 1, payload);
 
                 const tasks = state.thread.find(
@@ -282,7 +282,14 @@ const EventSlice = createSlice({
                 });
             })
             .addCase(getEventGigs.fulfilled, (state, { payload, meta }) => {
-                state.listeGigs.push(...payload);
+                payload.forEach((gig) => {
+                    const index = state.listeGigs.findIndex(
+                        (item) => item.id == gig.id
+                    );
+                    index == -1
+                        ? state.listeGigs.unshift(gig)
+                        : state.listeGigs.splice(index, 1, gig);
+                });
 
                 const tasks = state.thread.find(
                     (task) => task.id == meta.requestId

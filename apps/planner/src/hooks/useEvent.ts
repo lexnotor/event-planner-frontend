@@ -13,7 +13,7 @@ const useEvent = () => {
     );
 
     useEffect(() => {
-        if (thread.length == 0 && !isAllReadyLoad) dispatch(getEvents());
+        if (!isAllReadyLoad) dispatch(getEvents());
     }, [dispatch, thread, isAllReadyLoad]);
 
     return { listeEvents };
