@@ -16,8 +16,9 @@ const GigDetails = ({ eventGig }: { eventGig?: EventGigInfo }) => {
             </div>
             <div className="py-3 pr-5 flex flex-col gap-2 overflow-y-auto">
                 <h3>
-                    <span className="font-bold">{eventGig?.title}</span>
+                    <span className="font-bold">{eventGig?.title} </span>
                     <span className="text-[80%] text-primary-700">
+                        {" "}
                         (SERVICE LAUNCH)
                     </span>
                 </h3>
