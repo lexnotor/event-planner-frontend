@@ -4,9 +4,11 @@ import { Button } from "ui";
 import { useNewEventContext } from "./context/NewEventContext";
 import { addGigToEvent, createEvent } from "@/redux/event/event.slice";
 import { EventInfo } from "@/redux";
+import { useRouter } from "next/navigation";
 
 const SubmitNewEvent = () => {
     const dispatch = useAppDispatch();
+    const router = useRouter();
 
     const context = useNewEventContext();
     const submit = async () => {
@@ -35,6 +37,8 @@ const SubmitNewEvent = () => {
                 })
             );
         }
+        if ((event.payload as EventInfo)?.id)
+            router.push(`/event/p?id=${(event.payload as EventInfo)?.id}`);
     };
     return (
         <Button onClick={submit} active>

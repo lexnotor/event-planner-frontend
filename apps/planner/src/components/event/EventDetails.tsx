@@ -90,11 +90,11 @@ const EventDetails = ({ id }: { id?: string }) => {
             <div className="flex gap-2">
                 <Button size="small">Supprimer</Button>
                 <Button size="small">Modifier</Button>
-                <NewServiceModal id={event.id} />
+                <NewServiceModal id={event?.id} />
             </div>
 
             <Divider orientation="left" orientationMargin={0}>
-                Services ({eventGig.length})
+                Services ({eventGig?.length})
             </Divider>
 
             <section className="grid grid-cols-2 gap-4">

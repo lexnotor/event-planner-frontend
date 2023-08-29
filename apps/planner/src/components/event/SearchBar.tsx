@@ -1,4 +1,5 @@
 "use client";
+import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -8,6 +9,8 @@ const SearchBar = () => {
     const submitHandle: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
     };
+
+    const { isLogin } = useAuth();
 
     return (
         <div className="w-full">
@@ -27,11 +30,16 @@ const SearchBar = () => {
                         />
                     </label>
                 </form>
-                <div>
-                    <Link href="/event/n">
-                        <Button>Planifier</Button>
-                    </Link>
-                </div>
+
+                {isLogin ? (
+                    <div>
+                        <Link href="/event/n">
+                            <Button>Planifier</Button>
+                        </Link>
+                    </div>
+                ) : (
+                    <></>
+                )}
             </div>
         </div>
     );
