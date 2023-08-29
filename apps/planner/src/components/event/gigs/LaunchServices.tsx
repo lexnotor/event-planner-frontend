@@ -4,8 +4,15 @@ import { Modal } from "antd";
 import { CiSearch } from "react-icons/ci";
 import { Button } from "ui";
 import { useNewEventContext } from "../context/NewEventContext";
+import React from "react";
 
-const LaunchServices = ({ id }: { id: string }) => {
+const LaunchServices = ({
+    id,
+    SaveBtn = () => <></>,
+}: {
+    id: string;
+    SaveBtn: () => React.JSX.Element;
+}) => {
     const context = useNewEventContext();
     const current = context.services.find((item) => item.id == id);
 
@@ -58,13 +65,14 @@ const LaunchServices = ({ id }: { id: string }) => {
                         </tr>
                     </tbody>
                 </table>
-                <div className="flex justify-end">
+                <div className="flex gap-2 justify-end">
                     <Button
                         size="small"
                         onClick={() => context.deleteService(id)}
                     >
                         Supprimer
                     </Button>
+                    <SaveBtn />
                 </div>
             </div>
             <Modal
