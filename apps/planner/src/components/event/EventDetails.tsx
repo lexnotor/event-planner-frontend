@@ -12,6 +12,7 @@ import { BiCurrentLocation } from "react-icons/bi";
 import { BsCalendar3 } from "react-icons/bs";
 import { Button } from "ui";
 import { GigDetails } from "./gigs";
+import NewServiceModal from "./NewServiceModal";
 
 const EventDetails = ({ id }: { id?: string }) => {
     const router = useRouter();
@@ -89,7 +90,7 @@ const EventDetails = ({ id }: { id?: string }) => {
             <div className="flex gap-2">
                 <Button size="small">Supprimer</Button>
                 <Button size="small">Modifier</Button>
-                <Button size="small">Ajouter Service</Button>
+                <NewServiceModal id={event.id} />
             </div>
 
             <Divider orientation="left" orientationMargin={0}>

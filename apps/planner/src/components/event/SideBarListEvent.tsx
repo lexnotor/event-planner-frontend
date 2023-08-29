@@ -10,7 +10,6 @@ const SideBarListEvent = () => {
 
     return (
         <div className="px-2 rounded-lg bg-primary-200/0 overflow-y-auto max-h-[calc(100vh-5rem)] bg-white">
-            <hr />
             <ul className="flex flex-col gap-1">
                 {listeEvents.map((event) => {
                     return (

@@ -22,7 +22,7 @@ const Page = () => {
                         <EventDetails id={id} />
                     </StoreProvider>
                 </div>
-                <div className="sticky shrink-0 top-4 w-72">
+                <div className="sticky shrink-0 top-4 w-72 pb-2">
                     <StoreProvider>
                         <SideBarListEvent />
                     </StoreProvider>

@@ -18,6 +18,7 @@ interface NewEventContextType {
     services?: ServiceType[];
     addService?: (arg: ServiceType) => void;
     deleteService?: (arg: string) => void;
+    initContext?: () => void;
 }
 
 interface ServiceType {
@@ -60,6 +61,13 @@ const NewEventContext = ({ children }: { children?: ReactNode }) => {
     const dateRef = useRef<HTMLInputElement>();
     const descriptionRef = useRef<HTMLTextAreaElement>();
 
+    const initContext = () => {
+        setServices([]);
+        titleRef.current && (titleRef.current.value = "");
+        LocationRef.current && (LocationRef.current.value = "");
+        descriptionRef.current && (descriptionRef.current.value = "");
+    };
+
     const value: NewEventContextType = {
         titleRef,
         LocationRef,
@@ -68,6 +76,7 @@ const NewEventContext = ({ children }: { children?: ReactNode }) => {
         services,
         addService,
         deleteService,
+        initContext,
     };
 
     return <context.Provider value={value}>{children}</context.Provider>;
