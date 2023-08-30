@@ -1,6 +1,7 @@
 import MyGigs from "@/components/account/MyGigs";
 import NewMyGig from "@/components/account/NewMyGig";
 import { MyGigContextProvider } from "@/components/account/context/MyGigContext";
+import StoreProvider from "@/redux/StoreProvider";
 import Image from "next/image";
 import React from "react";
 import { BiEdit } from "react-icons/bi";
@@ -35,9 +36,11 @@ const Page = () => {
                     <h3 className="mb-4 flex justify-between">
                         <span className="font-semibold">Services</span>
                         <span>
-                            <MyGigContextProvider>
-                                <NewMyGig />
-                            </MyGigContextProvider>
+                            <StoreProvider>
+                                <MyGigContextProvider>
+                                    <NewMyGig />
+                                </MyGigContextProvider>
+                            </StoreProvider>
                         </span>
                     </h3>
                     <MyGigs />

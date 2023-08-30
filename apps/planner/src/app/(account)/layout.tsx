@@ -11,7 +11,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
                     <header className="w-80 shrink-0 bg-[#35354bec] text-white p-4 h-full">
                         <Sidebar />
                     </header>
-                    <main className="grow h-full overflow-y-auto">
+                    <main className="grow h-full overflow-y-auto text-neutral-700">
                         {children}
                     </main>
                 </div>

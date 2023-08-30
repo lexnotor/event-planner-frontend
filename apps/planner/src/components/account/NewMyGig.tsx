@@ -7,10 +7,12 @@ import { useMyGigContext } from "./context/MyGigContext";
 const NewMyGig = () => {
     const [isOpen, setIsOpen] = useToggle(false);
 
-    const { newGig } = useMyGigContext();
+    const { refGigTitle, refGigText, refGigType, allGigTypes } =
+        useMyGigContext();
 
     const submitNewGig: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
+
         setIsOpen(false);
         alert("GIG_ADDED");
     };
@@ -35,13 +37,21 @@ const NewMyGig = () => {
                     <header className="flex flex-col gap-2">
                         <div className="flex flex-col gap-1">
                             <label htmlFor="">Choisir une categorie</label>
-                            <select className="bg-transparent py-1 px-3 border rounded-lg">
-                                <option>LAUNCH</option>
+                            <select
+                                ref={refGigType}
+                                className="bg-transparent py-1 px-3 border rounded-lg"
+                            >
+                                {allGigTypes.map((type) => (
+                                    <option key={type} value={type}>
+                                        {type}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                         <div className="flex flex-col gap-1">
                             <label htmlFor="">Entrer le titre du service</label>
                             <input
+                                ref={refGigTitle}
                                 className="bg-transparent py-1 px-3 border rounded-lg"
                                 placeholder="LOCATION DE TENTES 10$ et 15$"
                             />
@@ -49,6 +59,7 @@ const NewMyGig = () => {
                         <div className="flex flex-col gap-1">
                             <label htmlFor="">Entrer une description</label>
                             <textarea
+                                ref={refGigText}
                                 rows={4}
                                 className="bg-transparent py-1 px-3 border rounded-lg resize-none"
                                 placeholder="Tentes de differentes dimensions"
