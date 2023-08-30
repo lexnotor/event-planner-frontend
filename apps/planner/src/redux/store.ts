@@ -4,6 +4,7 @@ import modalReducer from "./modals/modal.slice";
 import postReducer from "./post/post.slice";
 import userReducer from "./user/user.slice";
 import eventReducer from "./event/event.slice";
+import gigReducer from "./gig/gig.slice";
 
 const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
         user: userReducer,
         design: designReducer,
         event: eventReducer,
+        gig: gigReducer,
     },
 });
 

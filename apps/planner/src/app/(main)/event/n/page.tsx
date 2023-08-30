@@ -1,3 +1,4 @@
+import BackButton from "@/components/BackButton";
 import AddService from "@/components/event/AddService";
 import ListeServices from "@/components/event/ListeServices";
 import NewEventForm from "@/components/event/NewEventForm";
@@ -8,6 +9,10 @@ import StoreProvider from "@/redux/StoreProvider";
 const Page = () => {
     return (
         <div className="p-4">
+            <h1 className="flex justify-between mb-4">
+                <span className="text-2xl">Ajouter un évenement</span>
+                <BackButton />
+            </h1>
             <NewEventContext>
                 <h3 className="font-bold">Détails de l'evenement</h3>
                 <div className=" rounded-lg p-4">

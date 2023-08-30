@@ -12,7 +12,9 @@ const getPosts: AsyncThunkPayloadCreator<PostInfo[]> = async (_, thunkAPI) => {
         > = await axios.get(postUrl.getPosts);
         return res.data.data;
     } catch (error) {
-        return thunkAPI.rejectWithValue(error || "FAILLED_TO_LOAD_POSTS");
+        return thunkAPI.rejectWithValue(
+            error?.message || "FAILLED_TO_LOAD_POSTS"
+        );
     }
 };
 

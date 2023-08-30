@@ -10,6 +10,26 @@ body {
   font-size: 14px;
 }
 
+.bg-image {
+  background-image: url("https://cdn.pixabay.com/photo/2018/07/04/00/19/champagne-3515140_960_720.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hover-degrade {
+  @apply duration-700
+}
+
+.degrade,
+.hover-degrade:hover {
+  background-image: linear-gradient(60deg, #37448a, #65d7dd);
+}
+
+
+.side-degrade {
+  background-image: linear-gradient(60deg, #181d3c, #12162d);
+}
+
 .ant-btn-primary {
   @apply bg-purple-600
 }
