@@ -10,6 +10,13 @@ body {
   font-size: 14px;
 }
 
+.bg-image {
+  background-image: url("https://cdn.pixabay.com/photo/2018/07/04/00/19/champagne-3515140_960_720.jpg");
+  background-size: cover;
+  background-position: center;
+
+}
+
 .ant-btn-primary {
   @apply bg-purple-600
 }

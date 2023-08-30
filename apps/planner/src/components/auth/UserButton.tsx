@@ -44,19 +44,20 @@ const UserButton = () => {
                 destroyTooltipOnHide
                 color="green-inverse"
                 content={
-                    <ul className="[&>li]:py-2 [&>li]:px-8 [&>li]:duration-300 flex flex-col gap-0">
+                    <ul className="[&>*]:py-2 [&>*]:px-8 [&>*]:duration-300 flex flex-col gap-0">
                         <li
                             onClick={logout}
                             className="cursor-pointer hover:text-white hover:bg-neutral-600"
                         >
                             Logout
                         </li>
-                        <li
-                            onClick={logout}
+
+                        <Link
+                            href={"/account"}
                             className="cursor-pointer hover:text-white hover:bg-neutral-600"
                         >
-                            Logout
-                        </li>
+                            <li>Mon compte</li>
+                        </Link>
                     </ul>
                 }
             >
