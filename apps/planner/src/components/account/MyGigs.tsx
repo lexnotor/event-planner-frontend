@@ -1,22 +1,19 @@
 "use client";
+import useMyGig from "@/hooks/useMyGig";
+import { GigInfo } from "@/redux";
 import { Tag } from "antd";
 import React from "react";
 
-const Item = () => {
+const Item = ({ data }: { data: GigInfo }) => {
     return (
         <div className="p-4 rounded-lg shadow-lg flex flex-col gap-1">
             <header className="flex justify-between">
-                <div>LOCATION DE TENTES 10$ et 15$</div>
-                <Tag color="orange">LOCATION</Tag>
+                <div>{data?.title ?? "loading ..."}</div>
+                <Tag color="orange">{data?.type ?? "loading ..."}</Tag>
             </header>
             <hr />
             <article>
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Aut sint minus officiis tenetur, optio ipsam iure aspernatur
-                    quia corporis facilis provident possimus sunt illum. Dolore,
-                    ipsam velit. Hic, modi accusantium.
-                </p>
+                <p>{data?.text ?? "loading ..."}</p>
             </article>
             {/* <hr /> */}
             <footer className="grid grid-cols-3 gap-2">
@@ -35,12 +32,13 @@ const Item = () => {
 };
 
 const MyGigs = () => {
+    const { myGigList } = useMyGig();
+
     return (
         <div className="grid grid-cols-2 gap-4">
-            <Item />
-            <Item />
-            <Item />
-            <Item />
+            {myGigList.map((gig) => (
+                <Item key={gig?.id} data={gig} />
+            ))}
         </div>
     );
 };

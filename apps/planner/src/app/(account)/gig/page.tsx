@@ -43,7 +43,9 @@ const Page = () => {
                             </StoreProvider>
                         </span>
                     </h3>
-                    <MyGigs />
+                    <StoreProvider>
+                        <MyGigs />
+                    </StoreProvider>
                 </section>
                 <section className="mb-4 p-4 border border-sky-700/5 rounded-xl">
                     <h3 className="font-semibold mb-4 flex justify-between">

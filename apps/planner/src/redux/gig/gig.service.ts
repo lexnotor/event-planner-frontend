@@ -4,7 +4,7 @@ import { ApiResponse, GigInfo } from "..";
 import { gigUrl } from "../helper.api";
 import { RootState } from "../store";
 
-const getMyGig: AsyncThunkPayloadCreator<GigInfo[], any> = async (
+const getMyGig: AsyncThunkPayloadCreator<GigInfo[], void> = async (
     _,
     thunkAPI
 ) => {

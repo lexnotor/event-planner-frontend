@@ -42,10 +42,10 @@ const gigSlice = createSlice({
                 if (tasks) tasks.status = "FULLFILLED";
             })
             .addCase(getMyGig.rejected, (state, { meta }) => {
-                const tasks = state.thread.find(
+                const index = state.thread.findIndex(
                     (task) => task.id == meta.requestId
                 );
-                if (tasks) tasks.status = "ERROR";
+                state.thread.splice(index, 1);
             })
             // create one gig
             .addCase(createMyGig.pending, (state, { meta }) => {
