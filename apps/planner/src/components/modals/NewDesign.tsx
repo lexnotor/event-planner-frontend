@@ -2,8 +2,7 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { CloseModalFunction } from "@/index";
 import { createDesign } from "@/redux/design/design.slice";
-import { Input, Modal } from "antd";
-import { TextAreaRef } from "antd/es/input/TextArea";
+import { Modal } from "antd";
 import { useRef } from "react";
 import { Button } from "ui";
 import ImageUploader from "../ImageUploader";
@@ -17,12 +16,11 @@ const NewDesign = ({
 }) => {
     const dispatch = useAppDispatch();
 
-    const designTextRef = useRef<TextAreaRef>(null);
+    const designTextRef = useRef<HTMLTextAreaElement>(null);
     const designImageRef = useRef<{ file?: File }>({});
 
     const submitDesign = () => {
-        const { value: designText } =
-            designTextRef.current.resizableTextArea.textArea;
+        const { value: designText } = designTextRef.current;
 
         const { file } = designImageRef.current;
 
@@ -60,12 +58,10 @@ const NewDesign = ({
                 <ImageUploader ref={designImageRef} />
             </div>
 
-            <Input.TextArea
+            <textarea
                 placeholder="Text ..."
-                rows={3}
-                style={{ resize: "none" }}
-                bordered={false}
-                className="!bg-neutral-100"
+                rows={4}
+                className="w-full resize-none p-2 block rounded-lg border border-[#37448a] text-white bg-transparent focus:outline-none"
                 ref={designTextRef}
             />
         </Modal>

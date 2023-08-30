@@ -2,7 +2,7 @@
 import useToggle from "@/hooks/toggle";
 import { Modal } from "antd";
 import { CiSearch } from "react-icons/ci";
-import { Button } from "ui";
+import { AntConfig, Button } from "ui";
 import { useNewEventContext } from "../context/NewEventContext";
 import React from "react";
 
@@ -11,7 +11,7 @@ const LaunchServices = ({
     SaveBtn = () => <></>,
 }: {
     id: string;
-    SaveBtn: () => React.JSX.Element;
+    SaveBtn?: () => React.JSX.Element;
 }) => {
     const context = useNewEventContext();
     const current = context.services.find((item) => item.id == id);
@@ -20,7 +20,7 @@ const LaunchServices = ({
 
     return (
         <>
-            <div className="flex flex-col gap-2 max-w-md w-full bg-white duration-500 transition-colors p-4 rounded-md border border-primary-500">
+            <div className="flex flex-col gap-2 max-w-md w-full bg-[#6b718d]/10 duration-500 transition-colors p-4 rounded-md border border-primary-500">
                 <h3>{current?.type ?? "INCONNUE"}</h3>
                 <hr />
                 <table>
@@ -37,7 +37,7 @@ const LaunchServices = ({
                                     onChange={(e) =>
                                         (current.supplier = e.target.value)
                                     }
-                                    className="grow border rounded-l-full rounded-r-full border-primary-900 bg-primary-200 px-4 py-2 focus:outline-none bg-transparent"
+                                    className="grow border rounded-l-full rounded-r-full border-primary-200 bg-primary-200 px-4 py-2 focus:outline-none bg-transparent"
                                 />
                                 <span
                                     className="text-3xl cursor-pointer hover:text-blue-700"
@@ -59,7 +59,7 @@ const LaunchServices = ({
                                     onChange={(e) =>
                                         (current.details = e.target.value)
                                     }
-                                    className="grow border rounded-l-full rounded-r-full border-primary-900 bg-primary-200 px-4 py-2 focus:outline-none bg-transparent"
+                                    className="grow border rounded-l-full rounded-r-full border-primary-200 bg-primary-200 px-4 py-2 focus:outline-none bg-transparent"
                                 />
                             </td>
                         </tr>
@@ -75,13 +75,15 @@ const LaunchServices = ({
                     <SaveBtn />
                 </div>
             </div>
-            <Modal
-                destroyOnClose
-                open={isSearch}
-                closable
-                footer={null}
-                onCancel={() => setIsSearching(false)}
-            />
+            <AntConfig>
+                <Modal
+                    destroyOnClose
+                    open={isSearch}
+                    closable
+                    footer={null}
+                    onCancel={() => setIsSearching(false)}
+                />
+            </AntConfig>
         </>
     );
 };

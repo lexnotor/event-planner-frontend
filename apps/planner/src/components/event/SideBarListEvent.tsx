@@ -9,7 +9,7 @@ const SideBarListEvent = () => {
     const { listeEvents } = useEvent();
 
     return (
-        <div className="px-2 rounded-lg bg-primary-200/0 overflow-y-auto max-h-[calc(100vh-5rem)] bg-white">
+        <div className="px-2 rounded-lg overflow-y-auto max-h-[calc(100vh-5rem)] bg-[#6b718d]/10">
             <ul className="flex flex-col gap-1">
                 {listeEvents.map((event) => {
                     return (
@@ -18,7 +18,7 @@ const SideBarListEvent = () => {
                                 key={event.id}
                                 href={`/event/p/?id=${event.id}`}
                             >
-                                <li className="px-2 py-2 rounded-md  cursor-pointer hover:bg-slate-50">
+                                <li className="px-2 py-2 rounded-md  cursor-pointer hover:bg-[#6b718d]/50">
                                     <span className="block font-bold overflow-hidden text-ellipsis whitespace-nowrap max-w-full">
                                         {event.title}
                                     </span>
