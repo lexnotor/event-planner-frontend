@@ -3,13 +3,14 @@ import useMyGig from "@/hooks/useMyGig";
 import { GigInfo } from "@/redux";
 import { Tag } from "antd";
 import React from "react";
+import { Button } from "ui";
 
 const Item = ({ data }: { data: GigInfo }) => {
     return (
-        <div className="p-4 rounded-lg shadow-lg flex flex-col gap-1">
+        <div className="p-4 rounded-lg shadow-lg flex flex-col gap-1 bg-[#0f1225]">
             <header className="flex justify-between">
                 <div>{data?.title ?? "loading ..."}</div>
-                <Tag color="orange">{data?.type ?? "loading ..."}</Tag>
+                <Tag color="blue">{data?.type ?? "loading ..."}</Tag>
             </header>
             <hr />
             <article>
@@ -17,15 +18,15 @@ const Item = ({ data }: { data: GigInfo }) => {
             </article>
             {/* <hr /> */}
             <footer className="grid grid-cols-3 gap-2">
-                <button className="hover:bg-gray-300 border mt-2 py-1 rounded-lg">
+                <Button center size="small">
                     Supprimer
-                </button>
-                <button className="hover:bg-gray-300 border mt-2 py-1 rounded-lg">
+                </Button>
+                <Button center size="small">
                     Desactiver
-                </button>
-                <button className="hover:bg-gray-300 border mt-2 py-1 rounded-lg">
+                </Button>
+                <Button center size="small">
                     Modifier
-                </button>
+                </Button>
             </footer>
         </div>
     );

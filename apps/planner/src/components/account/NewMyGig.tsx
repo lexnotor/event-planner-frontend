@@ -5,6 +5,7 @@ import { createMyGig } from "@/redux/gig/gig.slice";
 import { Modal } from "antd";
 import React from "react";
 import { useMyGigContext } from "./context/MyGigContext";
+import { Button } from "ui";
 
 const NewMyGig = () => {
     const disaptch = useAppDispatch();
@@ -28,12 +29,9 @@ const NewMyGig = () => {
 
     return (
         <>
-            <button
-                onClick={() => setIsOpen(true)}
-                className="text-sm hover:bg-gray-300 border mt-2 py-1 px-2 rounded-lg"
-            >
+            <Button onClick={() => setIsOpen(true)} size="small">
                 Nouveau
-            </button>
+            </Button>
             <Modal
                 destroyOnClose
                 footer={null}

@@ -11,7 +11,13 @@ const MainSidebar = () => {
         <section className="p-8 !pt-4 flex flex-col gap-10 h-full bg-[#12162d] overflow-y-auto">
             <header>
                 <Link href={"/"}>
-                    <Image src={logo} width={500} height={500} alt="logo" />
+                    <Image
+                        src={logo}
+                        width={500}
+                        height={500}
+                        alt="logo"
+                        className="max-w-[10vw] mx-auto"
+                    />
                 </Link>
             </header>
             <nav className="flex flex-col gap-4">
