@@ -39,7 +39,7 @@ const ImageUploader = forwardRef(function ImageUploader(
             onDragLeave={preventDefaults}
             onDragOver={preventDefaults}
             onDragEnter={preventDefaults}
-            className="w-32 h-32 rounded-lg overflow-hidden bg-neutral-100 flex justify-center items-center cursor-pointer"
+            className="w-32 h-32 rounded-lg overflow-hidden border-dashed border-2 border-[#37448a] flex justify-center items-center cursor-pointer"
         >
             {files ? (
                 <Image
@@ -50,7 +50,7 @@ const ImageUploader = forwardRef(function ImageUploader(
                     className="h-32 w-32 object-cover"
                 />
             ) : (
-                <span className="text-4xl text-neutral-500">
+                <span className="text-4xl text-neutral-200">
                     <CiImageOn />
                 </span>
             )}

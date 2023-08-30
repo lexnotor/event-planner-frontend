@@ -4,8 +4,7 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import useAuth from "@/hooks/useAuth";
 import { CloseModalFunction } from "@/index";
 import { createPost } from "@/redux/post/post.slice";
-import { Input, Modal, Select } from "antd";
-import type { TextAreaRef } from "antd/es/input/TextArea";
+import { Modal } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "ui";
 import ImageUploader from "../ImageUploader";
@@ -22,12 +21,11 @@ const NewPost = ({ close, id }: { close: CloseModalFunction; id: string }) => {
     }, []);
 
     const { account } = useAuth();
-    const postTextRef = useRef<TextAreaRef>(null);
+    const postTextRef = useRef<HTMLTextAreaElement>(null);
     const postImageRef = useRef<{ file?: File }>({});
 
     const submitPost = () => {
-        const { value: postText } =
-            postTextRef.current.resizableTextArea.textArea;
+        const { value: postText } = postTextRef.current;
         const { file } = postImageRef.current;
 
         const payload: Record<string, string | Date | File> = {};
@@ -57,36 +55,26 @@ const NewPost = ({ close, id }: { close: CloseModalFunction; id: string }) => {
             }
             onCancel={() => close(id)}
         >
-            <Input.TextArea
+            <textarea
                 placeholder="Post ..."
-                rows={7}
-                style={{ resize: "none" }}
-                bordered={false}
-                className="!bg-neutral-100"
+                rows={4}
+                className="w-full resize-none p-2 block rounded-lg border border-[#37448a] text-white bg-transparent focus:outline-none"
                 ref={postTextRef}
             />
 
             <label className="mt-4 mb-2 inline-block">
                 Sélectionner un prestataire
             </label>
-            <Select
-                options={data}
-                className="w-full"
-                showSearch
-                placeholder="Prestataire"
-                defaultValue={0}
-                optionFilterProp="children"
-                filterOption={(input, option) =>
-                    (option?.label ?? "")
-                        .toLowerCase()
-                        .includes(input.toLowerCase())
-                }
-            />
+
+            <select className="w-full focus:outline-none rounded-lg py-2 px-4 bg-transparent border border-[#37448a]">
+                {data.map((item) => (
+                    <option key={item.value} value={item.value}>
+                        {item.label}
+                    </option>
+                ))}
+            </select>
 
             <div className="flex gap-4 mt-4">
-                <span className="w-32 h-32 rounded-lg bg-neutral-100 flex justify-center items-center">
-                    add picture
-                </span>
                 <ImageUploader ref={postImageRef} />
             </div>
         </Modal>

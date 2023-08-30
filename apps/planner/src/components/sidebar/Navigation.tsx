@@ -1,13 +1,40 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BiNews } from "react-icons/bi";
+import {
+    BsBox2Heart,
+    BsCalendar2Event,
+    BsFillChatLeftTextFill,
+} from "react-icons/bs";
+import { TbBuildingCommunity } from "react-icons/tb";
 
 const links = [
-    { label: "Publications", path: "/", exact: true },
-    { label: "Modèle d'invitations", path: "/design", exact: false },
-    { label: "Salle de céremonie", path: "/room", exact: false },
-    { label: "Évenemment", path: "/event", exact: false },
-    { label: "Discussion", path: "/chat", exact: false },
+    { label: "Publications", path: "/", exact: true, Icon: BiNews },
+    {
+        label: "Modèle d'invitations",
+        path: "/design",
+        exact: false,
+        Icon: BsBox2Heart,
+    },
+    {
+        label: "Salle de céremonie",
+        path: "/room",
+        exact: false,
+        Icon: TbBuildingCommunity,
+    },
+    {
+        label: "Évenemment",
+        path: "/event",
+        exact: false,
+        Icon: BsCalendar2Event,
+    },
+    {
+        label: "Discussion",
+        path: "/chat",
+        exact: false,
+        Icon: BsFillChatLeftTextFill,
+    },
 ];
 
 const Navigation = () => {
@@ -23,14 +50,17 @@ const Navigation = () => {
                         key={i}
                         style={{ textAlign: "start" }}
                         className={`p-0 ${
-                            isActive ? "bg-neutral-600" : "bg-neutral-400"
-                        } hover:bg-neutral-600 transition-colors !duration-500 rounded-r-full rounded-l-full text-white`}
+                            isActive ? "degrade font-bold" : ""
+                        } hover-degrade transition-colors !duration-500 rounded-r-full rounded-l-full text-white`}
                     >
                         <Link
                             href={link.path}
-                            className="w-full h-full inline-block px-4 py-3"
+                            className="w-full h-full flex gap-4 items-center px-4 py-3 "
                         >
-                            {link.label}
+                            <span className="text-2xl">
+                                <link.Icon />
+                            </span>
+                            <span>{link.label}</span>
                         </Link>
                     </button>
                 );

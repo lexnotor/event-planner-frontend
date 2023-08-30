@@ -10,14 +10,14 @@ import { RiMore2Fill } from "react-icons/ri";
 
 const Post = ({ postData }: { postData?: PostInfo }) => {
     return (
-        <div className="py-4 px-8 bg-white rounded-xl flex flex-col gap-4 max-w-[38rem] w-full mx-auto border">
+        <div className="py-4 px-8 bg-[#6b718d]/10 rounded-xl flex flex-col gap-4 max-w-[38rem] w-full mx-auto shadow-lg">
             <header className="flex gap-2 justify-between items-center">
-                <div className="w-10 h-10 rounded-full bg-neutral-400 cursor-pointer" />
+                <div className="w-10 h-10 rounded-full bg-white cursor-pointer" />
                 <div className="">
                     <p className="font-semibold cursor-pointer">
                         {postData?.author}
                     </p>
-                    <p className="font-light text-neutral-700 text-xs">
+                    <p className="font-light text-neutral-100 text-xs">
                         {new Date(postData.date).toDateString()}
                     </p>
                 </div>
@@ -57,9 +57,9 @@ const Post = ({ postData }: { postData?: PostInfo }) => {
                     <span className="basis-1/2 h-44 bg-neutral-300 rounded-xl"></span> */}
                 </div>
             </main>
-            <footer className="border-t min-h-[2rem] flex [&>*]:basis-1/4 [&>*]:justify-center [&>*]:duration-500 items-end">
+            <footer className=" min-h-[2rem] flex gap-4 [&>*]:basis-1/4  [&>*]:rounded-r-full  [&>*]:rounded-l-full [&>*]:justify-center items-end">
                 <Link
-                    className="flex gap-1 cursor-pointer hover:bg-neutral-200"
+                    className="flex gap-1 cursor-pointer hover-degrade py-1 px-2 border border-blue-400/20"
                     href={`/p?post=${postData.id}`}
                     scroll={true}
                 >
@@ -68,19 +68,19 @@ const Post = ({ postData }: { postData?: PostInfo }) => {
                     </span>
                     <span>2k</span>
                 </Link>
-                <div className="flex gap-1 cursor-pointer hover:bg-neutral-200">
+                <div className="flex gap-1 cursor-pointer hover-degrade py-1 px-2 border border-blue-400/20">
                     <span className="text-xl">
                         <BiLike />
                     </span>
                     <span>2k</span>
                 </div>
-                <div className="flex gap-1 cursor-pointer hover:bg-neutral-200">
+                <div className="flex gap-1 cursor-pointer hover-degrade py-1 px-2 border border-blue-400/20">
                     <span className="text-xl">
                         <BiLike />
                     </span>
                     <span>2k</span>
                 </div>
-                <div className="flex gap-1 cursor-pointer hover:bg-neutral-200">
+                <div className="flex gap-1 cursor-pointer hover-degrade py-1 px-2 border border-blue-400/20">
                     <span className="text-xl">
                         <BsBookmarkCheck />
                     </span>
