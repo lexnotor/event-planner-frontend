@@ -54,4 +54,18 @@ const eventUrl = {
     delteGigFromEvent: (eventId: string) => `${baseUrl}/event/gig/${eventId}`,
 };
 
-export { apiFetch, authUrl, baseUrl, userUrl, postUrl, designUrl, eventUrl };
+const gigUrl = {
+    getMyGig: (userId: string) => `${baseUrl}/gig/find?userId=${userId}`,
+    createMyGig: `${baseUrl}/gig/new`,
+};
+
+export {
+    apiFetch,
+    authUrl,
+    baseUrl,
+    designUrl,
+    eventUrl,
+    gigUrl,
+    postUrl,
+    userUrl,
+};
