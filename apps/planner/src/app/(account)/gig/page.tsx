@@ -1,4 +1,6 @@
 import MyGigs from "@/components/account/MyGigs";
+import NewMyGig from "@/components/account/NewMyGig";
+import { MyGigContextProvider } from "@/components/account/context/MyGigContext";
 import Image from "next/image";
 import React from "react";
 import { BiEdit } from "react-icons/bi";
@@ -33,9 +35,9 @@ const Page = () => {
                     <h3 className="mb-4 flex justify-between">
                         <span className="font-semibold">Services</span>
                         <span>
-                            <button className="text-sm hover:bg-gray-300 border mt-2 py-1 px-2 rounded-lg">
-                                Nouveau
-                            </button>
+                            <MyGigContextProvider>
+                                <NewMyGig />
+                            </MyGigContextProvider>
                         </span>
                     </h3>
                     <MyGigs />
