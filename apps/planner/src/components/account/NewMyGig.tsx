@@ -1,20 +1,29 @@
 "use client";
 import useToggle from "@/hooks/toggle";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { createMyGig } from "@/redux/gig/gig.slice";
 import { Modal } from "antd";
 import React from "react";
 import { useMyGigContext } from "./context/MyGigContext";
 
 const NewMyGig = () => {
+    const disaptch = useAppDispatch();
     const [isOpen, setIsOpen] = useToggle(false);
 
     const { refGigTitle, refGigText, refGigType, allGigTypes } =
         useMyGigContext();
 
-    const submitNewGig: React.FormEventHandler<HTMLFormElement> = (e) => {
+    const submitNewGig: React.FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
 
+        const title = refGigTitle.current.value;
+        const text = refGigText.current.value;
+        const type = refGigType.current.value;
+        if (!title || !text || !type) return alert("PLEASE FILL ALL FIELD");
+
+        await disaptch(createMyGig({ title, type, text }));
+
         setIsOpen(false);
-        alert("GIG_ADDED");
     };
 
     return (

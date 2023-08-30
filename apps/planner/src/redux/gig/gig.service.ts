@@ -37,10 +37,10 @@ type createGigPayload = {
     tags?: string;
 };
 
-const createMyGig: AsyncThunkPayloadCreator<
-    GigInfo[],
-    createGigPayload
-> = async (payload, thunkAPI) => {
+const createMyGig: AsyncThunkPayloadCreator<GigInfo, createGigPayload> = async (
+    payload,
+    thunkAPI
+) => {
     const { title, type, tags, text } = payload;
 
     const {
@@ -48,7 +48,7 @@ const createMyGig: AsyncThunkPayloadCreator<
     } = thunkAPI.getState() as RootState;
 
     try {
-        const res: AxiosResponse<ApiResponse<GigInfo[]>> = await axios.post(
+        const res: AxiosResponse<ApiResponse<GigInfo>> = await axios.post(
             gigUrl.createMyGig,
             { title, type, tags, text },
             {

@@ -6,17 +6,7 @@ interface EventState {
     myGigList: GigInfo[];
     thread: {
         id: string;
-        action:
-            | "LOAD_EVENTS"
-            | "GET_ONE_EVENT"
-            | "DELETE_EVENT"
-            | "UPDATE_EVENT"
-            | "CREATE_EVENT"
-            // GIG
-            | "UPDATE_EVENT_GIG"
-            | "REMOVE_EVENT_GIG"
-            | "GET_EVENT_GIG"
-            | "ADD_GIG_TO_EVENT";
+        action: "LOAD_MY_GIG" | "CREATE_MY_GIG";
         status: "LOADING" | "FULLFILLED" | "ERROR";
         message?: string;
     }[];
@@ -28,6 +18,7 @@ const initialState: EventState = {
 };
 
 const getMyGig = createAsyncThunk("gig/getMyGig", gigService.getMyGig);
+const createMyGig = createAsyncThunk("gig/createMyGig", gigService.createMyGig);
 
 const gigSlice = createSlice({
     initialState,
@@ -35,10 +26,11 @@ const gigSlice = createSlice({
     reducers: {},
     extraReducers: (builder) =>
         builder
+            // get all my gig
             .addCase(getMyGig.pending, (state, { meta }) => {
                 state.thread.push({
                     id: meta.requestId,
-                    action: "LOAD_EVENTS",
+                    action: "LOAD_MY_GIG",
                     status: "LOADING",
                 });
             })
@@ -54,6 +46,28 @@ const gigSlice = createSlice({
                     (task) => task.id == meta.requestId
                 );
                 if (tasks) tasks.status = "ERROR";
+            })
+            // create one gig
+            .addCase(createMyGig.pending, (state, { meta }) => {
+                state.thread.push({
+                    id: meta.requestId,
+                    action: "CREATE_MY_GIG",
+                    status: "LOADING",
+                });
+            })
+            .addCase(createMyGig.fulfilled, (state, { meta, payload }) => {
+                state.myGigList.unshift(payload);
+
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "FULLFILLED";
+            })
+            .addCase(createMyGig.rejected, (state, { meta }) => {
+                const tasks = state.thread.find(
+                    (task) => task.id == meta.requestId
+                );
+                if (tasks) tasks.status = "ERROR";
             }),
 });
 
@@ -63,4 +77,4 @@ export default gigSlice.reducer;
 export {};
 
 // async
-export { getMyGig };
+export { createMyGig, getMyGig };

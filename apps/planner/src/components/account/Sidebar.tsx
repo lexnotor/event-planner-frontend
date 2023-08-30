@@ -2,6 +2,8 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import StoreProvider from "@/redux/StoreProvider";
+import UserButton from "../auth/UserButton";
 
 const links = [
     { label: "Mon compte", path: "/account", exact: true },
@@ -40,10 +42,15 @@ const Navigation = () => {
 
 const Sidebar = () => {
     return (
-        <div>
+        <div className="flex flex-col h-full">
             <nav className="flex flex-col gap-4">
                 <Navigation />
             </nav>
+            <footer className="mt-auto">
+                <StoreProvider>
+                    <UserButton />
+                </StoreProvider>
+            </footer>
         </div>
     );
 };
